@@ -120,7 +120,15 @@ def fetch_macro():
     y10 = fred("DGS10", 5)
     cpi, core = fred("CPIAUCSL", 14), fred("CPILFESL", 14)
     pay, un = fred("PAYEMS", 3), fred("UNRATE", 3)
-    return {"fed_upper": up[0][1], "fed_lower": lo[0][1], "fed_date": up[0][0],
+    fed_hist = fred("DFEDTARU", 220)
+    d0 = datetime.strptime(fed_hist[0][0], "%Y-%m-%d")
+    fed_ref = None
+    for d, v in fed_hist:
+        if (d0 - datetime.strptime(d, "%Y-%m-%d")).days >= 180:
+            fed_ref = v
+            break
+    return {"fed_change_6m_pp": (up[0][1] - fed_ref) if fed_ref is not None else None,
+            "fed_upper": up[0][1], "fed_lower": lo[0][1], "fed_date": up[0][0],
             "us10y": y10[0][1], "us10y_date": y10[0][0],
             "cpi_mom_pct": pct(cpi[0][1], cpi[1][1]), "cpi_yoy_pct": yoy(cpi),
             "cpi_date": cpi[0][0],
@@ -143,6 +151,37 @@ def fng_zone(v):
     return "EXTREME GREED"
 
 
+def macro_rule(m):
+    """Rule-based macro score from -3 (bearish for BTC) to +3. NOT a trading signal."""
+    parts = []
+    ch = m.get("fed_change_6m_pp")
+    if ch is None:
+        parts.append({"name": "Fed 6 လ ပြောင်းလဲမှု", "value": "-", "points": 0,
+                      "reason": "ဒေတာ မရ"})
+    elif ch > 0.1:
+        parts.append({"name": "Fed 6 လ ပြောင်းလဲမှု", "value": "%+.2f pp" % ch, "points": -1,
+                      "reason": "အတိုးနှုန်း တိုးနေ (Tightening)"})
+    elif ch < -0.1:
+        parts.append({"name": "Fed 6 လ ပြောင်းလဲမှု", "value": "%+.2f pp" % ch, "points": 1,
+                      "reason": "အတိုးနှုန်း လျှော့နေ (Easing)"})
+    else:
+        parts.append({"name": "Fed 6 လ ပြောင်းလဲမှု", "value": "%+.2f pp" % ch, "points": 0,
+                      "reason": "မပြောင်း (Hold)"})
+    y = m["us10y"]
+    parts.append({"name": "US 10Y Yield", "value": "%.2f%%" % y,
+                  "points": -1 if y >= 5 else 1 if y < 4 else 0,
+                  "reason": "5% နှင့်အထက်" if y >= 5 else "4% အောက်" if y < 4 else "4-5% အတွင်း"})
+    c = m["cpi_mom_pct"]
+    parts.append({"name": "CPI လချင်း", "value": "%+.2f%%" % c,
+                  "points": -1 if c >= 0.3 else 1 if c <= 0.1 else 0,
+                  "reason": "0.3% နှင့်အထက် (အပူလွန်)" if c >= 0.3 else
+                            "0.1% နှင့်အောက် (အေးသွား)" if c <= 0.1 else "0.1-0.3% အတွင်း"})
+    score = sum(p["points"] for p in parts)
+    label = "BEARISH" if score <= -2 else "BULLISH" if score >= 2 else "MIXED"
+    return {"score": score, "label": label, "parts": parts,
+            "note": "Rule-based ဖြစ်ပြီး Trading Signal မဟုတ်ပါ"}
+
+
 def rules(d):
     """Simple rule-based labels. NOT trading signals."""
     r = {}
@@ -155,6 +194,10 @@ def rules(d):
     if "macro" in d:
         y = d["macro"]["us10y"]
         r["us10y_zone"] = "ABOVE 5%" if y >= 5 else "4-5%" if y >= 4 else "BELOW 4%"
+        try:
+            r["macro"] = macro_rule(d["macro"])
+        except Exception:  # noqa: BLE001
+            pass
     if "network" in d and d["network"].get("last_retarget_pct") is not None:
         c = d["network"]["last_retarget_pct"]
         r["difficulty_trend"] = ("EASING" if c < -2 else
@@ -191,6 +234,12 @@ def main():
         new["supply"] = {"circulating": s, "daily_issuance": 450.0,
                          "annual_inflation_pct": 450 * 365 / s * 100,
                          "note": "calculated from block height"}
+    if os.path.exists("manual.json"):
+        try:
+            with open("manual.json", encoding="utf-8") as f:
+                new["manual"] = json.load(f)
+        except Exception as e:  # noqa: BLE001
+            errors["manual"] = "manual.json: " + str(e)[:150]
     new["rules"] = rules(new)
     new["updated_utc"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     new["errors"] = errors
