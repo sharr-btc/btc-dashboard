@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64737,
-    "change_24h_pct": -0.9668878453272017,
+    "usd": 64716,
+    "change_24h_pct": -1.1937229917416847,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,12 +11,12 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 975980,
+    "height": 975981,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 930.312383352913,
+    "hashrate_ehs": 927.9655458310391,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -0.8461055229690206,
-    "blocks_to_retarget": 1780,
+    "next_retarget_est_pct": -0.8720199871361634,
+    "blocks_to_retarget": 1779,
     "source": "mempool.space"
   },
   "stablecoins": {
@@ -47,9 +47,9 @@
     "source": "FRED (St. Louis Fed)"
   },
   "supply": {
-    "circulating": 20112440.625,
+    "circulating": 20112443.75,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166587191602959,
+    "annual_inflation_pct": 0.8166585922707676,
     "note": "calculated from block height"
   },
   "manual": {
@@ -137,6 +137,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T15:37:49Z",
+  "updated_utc": "2026-11-15T15:43:07Z",
   "errors": {}
 }
