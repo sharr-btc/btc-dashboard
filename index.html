@@ -47,11 +47,12 @@ function render(d){
   if(sc)g.push(card("Stablecoin Supply","$"+n(sc.total_usd/1e9,1)+"B","30D "+pct(sc.change_30d_pct)+" ($"+n(sc.change_30d_usd/1e9,1)+"B)",r.stablecoin_trend,sc.change_30d_pct<-1?"dn":sc.change_30d_pct>1?"up":"mid"));
   if(m){
     var up=m.fed_upper,lo=m.fed_lower;
-    g.push(card("Fed ရဲ့ အတိုးနှုန်း (Target)",n(lo,2)+"-"+n(up,2)+"%","FRED · "+esc(m.fed_date)));
-    g.push(card("US 10Y Yield",n(m.us10y,2)+"%","FRED · "+esc(m.us10y_date),r.us10y_zone,m.us10y>=5?"dn":m.us10y>=4?"mid":"up"));
-    g.push(card("CPI (နှစ်ချင်း)",pct(m.cpi_yoy_pct),"လချင်း "+pct(m.cpi_mom_pct)+" · "+esc(m.cpi_date)));
-    g.push(card("Core CPI (နှစ်ချင်း)",pct(m.core_yoy_pct),"လချင်း "+pct(m.core_mom_pct)+" · "+esc(m.core_date)));
-    g.push(card("NFP (လချင်း ပြောင်းလဲမှု)",(m.nfp_change_k>0?"+":"")+n(m.nfp_change_k,0)+"K","အလုပ်လက်မဲ့ "+n(m.unemployment_pct,1)+"% · "+esc(m.nfp_date)));
+    function yoyTxt(v){return v==null?"နှစ်ချင်း: မရနိုင် (ပြီးခဲ့တဲ့နှစ် အခြေခံဒေတာ မရှိ)":"နှစ်ချင်း "+pct(v)}
+    g.push(card("Fed ရဲ့ အတိုးနှုန်း (Target)",Number(lo).toFixed(2)+"-"+Number(up).toFixed(2)+"%","FRED · "+esc(m.fed_date)));
+    g.push(card("US 10Y Yield",Number(m.us10y).toFixed(2)+"%","FRED · "+esc(m.us10y_date),r.us10y_zone,m.us10y>=5?"dn":m.us10y>=4?"mid":"up"));
+    g.push(card("CPI (လချင်း)",pct(m.cpi_mom_pct),yoyTxt(m.cpi_yoy_pct)+" · "+esc(m.cpi_date.slice(0,7))));
+    g.push(card("Core CPI (လချင်း)",pct(m.core_mom_pct),yoyTxt(m.core_yoy_pct)+" · "+esc(m.core_date.slice(0,7))));
+    g.push(card("NFP (လချင်း ပြောင်းလဲမှု)",(m.nfp_change_k>0?"+":"")+n(m.nfp_change_k,0)+"K","အလုပ်လက်မဲ့ "+n(m.unemployment_pct,1)+"% · "+esc(m.nfp_date.slice(0,7))));
   }
   document.getElementById("grid").innerHTML=g.join("");
   var t=new Date(d.updated_utc),ageH=(Date.now()-t.getTime())/36e5;
