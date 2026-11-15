@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64697,
-    "change_24h_pct": -0.8951923722786224,
+    "usd": 64737,
+    "change_24h_pct": -0.9668878453272017,
     "source": "CoinGecko"
   },
   "fng": {
@@ -15,7 +15,7 @@
     "difficulty": 134823837323272.7,
     "hashrate_ehs": 930.312383352913,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -0.8373266254227296,
+    "next_retarget_est_pct": -0.8461055229690206,
     "blocks_to_retarget": 1780,
     "source": "mempool.space"
   },
@@ -137,6 +137,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T15:37:24Z",
+  "updated_utc": "2026-11-15T15:37:49Z",
   "errors": {}
 }
