@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64634,
-    "change_24h_pct": -0.8817374386078612,
+    "usd": 64697,
+    "change_24h_pct": -0.8951923722786224,
     "source": "CoinGecko"
   },
   "fng": {
@@ -15,7 +15,7 @@
     "difficulty": 134823837323272.7,
     "hashrate_ehs": 930.312383352913,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -0.6434703700749167,
+    "next_retarget_est_pct": -0.8373266254227296,
     "blocks_to_retarget": 1780,
     "source": "mempool.space"
   },
@@ -28,6 +28,7 @@
     "source": "DefiLlama"
   },
   "macro": {
+    "fed_change_6m_pp": 0.25,
     "fed_upper": 4.0,
     "fed_lower": 3.75,
     "fed_date": "2026-11-15",
@@ -51,12 +52,91 @@
     "annual_inflation_pct": 0.8166587191602959,
     "note": "calculated from block height"
   },
+  "manual": {
+    "etf": {
+      "as_of": "2026-11-13",
+      "bias": "BEARISH",
+      "headline": "Outflow ဆက်တိုက် ၇ session",
+      "rows": [
+        [
+          "Daily Net Flow (Nov 13)",
+          "-$185.45M"
+        ],
+        [
+          "5-Session Net Flow (Nov 9-13)",
+          "-$1.07B"
+        ],
+        [
+          "ETF AUM",
+          "$86.2B"
+        ],
+        [
+          "YTD 2026 Net Flow",
+          "-$1.56B"
+        ],
+        [
+          "IBIT / FBTC / GBTC (Nov 13)",
+          "-$143.5M / -$41.9M / $0"
+        ]
+      ],
+      "source": "SoSoValue (TokenPost, CoinDesk မှတစ်ဆင့်)"
+    },
+    "news": {
+      "as_of": "2026-11-13",
+      "bias": "MOSTLY NEGATIVE",
+      "headline": "Fed hike သတင်း + ETF outflow",
+      "rows": [
+        [
+          "Hot Oct CPI က Dec Fed hike ကို အတည်ပြု",
+          "NEGATIVE · HIGH · CONFIRMED"
+        ],
+        [
+          "ETF Outflow ဆက်တိုက် ၇ session",
+          "NEGATIVE · HIGH · CORROBORATED"
+        ],
+        [
+          "DOJ က Binance hack $1.2B+ သိမ်းဆည်းခွင့် ရ",
+          "NEUTRAL · MEDIUM · CONFIRMED"
+        ],
+        [
+          "Visa က USDPT stablecoin settlement",
+          "POSITIVE · LOW · UNVERIFIED"
+        ]
+      ],
+      "source": "ကျွန်တော်ကိုယ်တိုင် ရွေးထားသော Event ၄ ခု"
+    }
+  },
   "rules": {
     "fng_zone": "EXTREME FEAR",
     "stablecoin_trend": "CONTRACTING",
     "us10y_zone": "ABOVE 5%",
+    "macro": {
+      "score": -3,
+      "label": "BEARISH",
+      "parts": [
+        {
+          "name": "Fed 6 လ ပြောင်းလဲမှု",
+          "value": "+0.25 pp",
+          "points": -1,
+          "reason": "အတိုးနှုန်း တိုးနေ (Tightening)"
+        },
+        {
+          "name": "US 10Y Yield",
+          "value": "5.10%",
+          "points": -1,
+          "reason": "5% နှင့်အထက်"
+        },
+        {
+          "name": "CPI လချင်း",
+          "value": "+0.35%",
+          "points": -1,
+          "reason": "0.3% နှင့်အထက် (အပူလွန်)"
+        }
+      ],
+      "note": "Rule-based ဖြစ်ပြီး Trading Signal မဟုတ်ပါ"
+    },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T15:27:38Z",
+  "updated_utc": "2026-11-15T15:37:24Z",
   "errors": {}
 }
