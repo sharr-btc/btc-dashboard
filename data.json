@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 65419,
-    "change_24h_pct": -2.5629992733695453,
+    "usd": 65355,
+    "change_24h_pct": -2.9654133991984413,
     "source": "CoinGecko"
   },
   "fng": {
@@ -15,7 +15,7 @@
     "difficulty": 134823837323272.7,
     "hashrate_ehs": 925.1765439029161,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -2.9172190242712226,
+    "next_retarget_est_pct": -3.069389440666892,
     "blocks_to_retarget": 1820,
     "source": "mempool.space"
   },
@@ -38,6 +38,8 @@
     "stablecoin_trend": "CONTRACTING",
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T09:44:58Z",
-  "errors": {}
+  "updated_utc": "2026-11-15T09:53:05Z",
+  "errors": {
+    "macro": "RuntimeError: FRED_API_KEY is not set"
+  }
 }
