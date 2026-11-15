@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64752,
-    "change_24h_pct": -3.382833567767771,
+    "usd": 64758,
+    "change_24h_pct": -3.2647274907542863,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,12 +11,12 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 975901,
+    "height": 975906,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 916.933115292941,
+    "hashrate_ehs": 917.9237724317395,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -4.562176718063283,
-    "blocks_to_retarget": 1859,
+    "next_retarget_est_pct": -4.860134492084822,
+    "blocks_to_retarget": 1854,
     "source": "mempool.space"
   },
   "stablecoins": {
@@ -28,9 +28,9 @@
     "source": "DefiLlama"
   },
   "supply": {
-    "circulating": 20112193.75,
+    "circulating": 20112209.375,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166687435576241,
+    "annual_inflation_pct": 0.816668109094802,
     "note": "calculated from block height"
   },
   "rules": {
@@ -38,6 +38,6 @@
     "stablecoin_trend": "CONTRACTING",
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T05:09:47Z",
+  "updated_utc": "2026-11-15T05:51:38Z",
   "errors": {}
 }
