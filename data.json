@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 65363,
-    "change_24h_pct": -3.022521717068003,
+    "usd": 65535,
+    "change_24h_pct": -2.4850267579504637,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 975940,
+    "height": 975946,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 925.1765439029161,
+    "hashrate_ehs": 930.7566271568234,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -3.1460714273272683,
-    "blocks_to_retarget": 1820,
+    "next_retarget_est_pct": -3.174134152387875,
+    "blocks_to_retarget": 1814,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 287075660007.91,
-    "change_7d_usd": -4402737286.090027,
-    "change_7d_pct": -1.5104849371218414,
-    "change_30d_usd": -15974426155.090027,
-    "change_30d_pct": -5.271216503300363,
+    "total_usd": 287043837211.17,
+    "change_7d_usd": -4434560082.830017,
+    "change_7d_pct": -1.521402657623746,
+    "change_30d_usd": -16006248951.830017,
+    "change_30d_pct": -5.281717340684344,
     "source": "DefiLlama"
   },
   "macro": {
@@ -46,9 +46,9 @@
     "source": "FRED (St. Louis Fed)"
   },
   "supply": {
-    "circulating": 20112315.625,
+    "circulating": 20112334.375,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166637947737557,
+    "annual_inflation_pct": 0.8166630334277147,
     "note": "calculated from block height"
   },
   "rules": {
@@ -57,6 +57,6 @@
     "us10y_zone": "ABOVE 5%",
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T09:57:15Z",
+  "updated_utc": "2026-11-15T10:42:37Z",
   "errors": {}
 }
