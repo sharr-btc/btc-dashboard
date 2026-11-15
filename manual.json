@@ -1,0 +1,27 @@
+{
+  "etf": {
+    "as_of": "2026-11-13",
+    "bias": "BEARISH",
+    "headline": "Outflow ဆက်တိုက် ၇ session",
+    "rows": [
+      ["Daily Net Flow (Nov 13)", "-$185.45M"],
+      ["5-Session Net Flow (Nov 9-13)", "-$1.07B"],
+      ["ETF AUM", "$86.2B"],
+      ["YTD 2026 Net Flow", "-$1.56B"],
+      ["IBIT / FBTC / GBTC (Nov 13)", "-$143.5M / -$41.9M / $0"]
+    ],
+    "source": "SoSoValue (TokenPost, CoinDesk မှတစ်ဆင့်)"
+  },
+  "news": {
+    "as_of": "2026-11-13",
+    "bias": "MOSTLY NEGATIVE",
+    "headline": "Fed hike သတင်း + ETF outflow",
+    "rows": [
+      ["Hot Oct CPI က Dec Fed hike ကို အတည်ပြု", "NEGATIVE · HIGH · CONFIRMED"],
+      ["ETF Outflow ဆက်တိုက် ၇ session", "NEGATIVE · HIGH · CORROBORATED"],
+      ["DOJ က Binance hack $1.2B+ သိမ်းဆည်းခွင့် ရ", "NEUTRAL · MEDIUM · CONFIRMED"],
+      ["Visa က USDPT stablecoin settlement", "POSITIVE · LOW · UNVERIFIED"]
+    ],
+    "source": "ကျွန်တော်ကိုယ်တိုင် ရွေးထားသော Event ၄ ခု"
+  }
+}
