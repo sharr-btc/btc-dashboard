@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64405,
-    "change_24h_pct": -4.367625208496879,
+    "usd": 63919,
+    "change_24h_pct": -4.836471711174601,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,26 +11,26 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 975920,
+    "height": 975924,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 922.6553006821815,
+    "hashrate_ehs": 921.9859479968873,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -3.9759242751364443,
-    "blocks_to_retarget": 1840,
+    "next_retarget_est_pct": -4.917502567064735,
+    "blocks_to_retarget": 1836,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 287067002658.88,
-    "change_7d_usd": -4411394635.119995,
-    "change_7d_pct": -1.5134550882926796,
-    "change_30d_usd": -15983083504.119995,
-    "change_30d_pct": -5.274073241979959,
+    "total_usd": 287068178816.1,
+    "change_7d_usd": -4410218477.900024,
+    "change_7d_pct": -1.5130515739221841,
+    "change_30d_usd": -15981907346.900024,
+    "change_30d_pct": -5.273685135434649,
     "source": "DefiLlama"
   },
   "supply": {
-    "circulating": 20112253.125,
+    "circulating": 20112265.625,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166663326041448,
+    "annual_inflation_pct": 0.8166658250368051,
     "note": "calculated from block height"
   },
   "rules": {
@@ -38,6 +38,6 @@
     "stablecoin_trend": "CONTRACTING",
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T06:58:40Z",
+  "updated_utc": "2026-11-15T08:03:53Z",
   "errors": {}
 }
