@@ -1,0 +1,43 @@
+{
+  "price": {
+    "usd": 64752,
+    "change_24h_pct": -3.382833567767771,
+    "source": "CoinGecko"
+  },
+  "fng": {
+    "value": 10,
+    "label": "Extreme Fear",
+    "previous": 13,
+    "source": "Alternative.me"
+  },
+  "network": {
+    "height": 975901,
+    "difficulty": 134823837323272.7,
+    "hashrate_ehs": 916.933115292941,
+    "last_retarget_pct": -9.126656385443539,
+    "next_retarget_est_pct": -4.562176718063283,
+    "blocks_to_retarget": 1859,
+    "source": "mempool.space"
+  },
+  "stablecoins": {
+    "total_usd": 287070896898.47,
+    "change_7d_usd": -4407500395.530029,
+    "change_7d_pct": -1.5121190580324206,
+    "change_30d_usd": -15979189264.53003,
+    "change_30d_pct": -5.272788226806636,
+    "source": "DefiLlama"
+  },
+  "supply": {
+    "circulating": 20112193.75,
+    "daily_issuance": 450.0,
+    "annual_inflation_pct": 0.8166687435576241,
+    "note": "calculated from block height"
+  },
+  "rules": {
+    "fng_zone": "EXTREME FEAR",
+    "stablecoin_trend": "CONTRACTING",
+    "difficulty_trend": "EASING"
+  },
+  "updated_utc": "2026-11-15T05:09:47Z",
+  "errors": {}
+}
