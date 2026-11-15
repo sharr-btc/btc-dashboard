@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC Live Data</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--card:#0b0b0b;--line:#2a2a2a;--ink:#f2f2f2;--mute:#9a9a9a;--up:#22c55e;--dn:#ef4444;--mid:#eab308;color-scheme:dark}
+@media (prefers-color-scheme:light){:root{--bg:#f5f5f3;--card:#fff;--line:#dcdcd8;--ink:#161616;--mute:#666;--up:#15803d;--dn:#b91c1c;--mid:#a16207;color-scheme:light}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans Myanmar',system-ui,sans-serif;line-height:1.6;font-size:14px}
+.wrap{max-width:680px;margin:0 auto;padding:16px}
+h1{font-size:16px;margin:0 0 4px}
+.sm{font-size:12px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.v{font-size:22px;font-weight:700}
+.up{color:var(--up)}.dn{color:var(--dn)}.mid{color:var(--mid)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border:1px solid var(--line);border-radius:999px}
+.warn{border:1px solid var(--mid);color:var(--mid);border-radius:10px;padding:8px 12px;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>BTC Live Data (အလိုအလျောက် Update)</h1>
+<div class="sm" id="upd">Loading...</div>
+<div id="warn"></div>
+<div class="grid" id="grid"></div>
+<div class="sm">ဒီစာမျက်နှာက Free Public API များမှ ဒေတာကို တစ်နာရီတစ်ခါ ယူပါတယ်။ Rule-based Label တွေဖြစ်ပြီး Trading Signal မဟုတ်ပါ။</div>
+</div>
+<script>
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function n(x,d){return x==null?"-":Number(x).toLocaleString("en-US",{maximumFractionDigits:d==null?0:d})}
+function pct(x){return x==null?"-":(x>0?"+":"")+Number(x).toFixed(2)+"%"}
+function cls(x){return x>0?"up":x<0?"dn":""}
+function card(title,val,sub,tagTxt,tagCls){
+  return '<div class="card"><div class="sm">'+esc(title)+'</div><div class="v '+(tagCls||"")+'">'+val+'</div><div class="sm">'+sub+'</div>'+(tagTxt?'<span class="tag '+(tagCls||"")+'">'+esc(tagTxt)+'</span>':"")+'</div>'
+}
+function render(d){
+  var g=[],r=d.rules||{},p=d.price,f=d.fng,nw=d.network,s=d.supply,sc=d.stablecoins,m=d.macro;
+  if(p)g.push(card("BTC ဈေး (USD)","$"+n(p.usd),"24h "+pct(p.change_24h_pct)+(p.stale?" (ဟောင်း)":"")));
+  if(f)g.push(card("Fear & Greed",f.value+"/100","အရင်နေ့ "+n(f.previous),r.fng_zone||f.label,f.value<=44?"dn":f.value>=56?"up":"mid"));
+  if(nw)g.push(card("Hash Rate",n(nw.hashrate_ehs,0)+" EH/s","Block "+n(nw.height)));
+  if(nw)g.push(card("Difficulty ပြောင်းလဲမှု (နောက်ဆုံး)",pct(nw.last_retarget_pct),"လက်ရှိ "+n(nw.difficulty/1e12,2)+"T · ခန့်မှန်းနောက်တစ်ကြိမ် "+pct(nw.next_retarget_est_pct),r.difficulty_trend,nw.last_retarget_pct<-2?"dn":nw.last_retarget_pct>2?"up":"mid"));
+  if(s)g.push(card("လည်ပတ်နေသော BTC",n(s.circulating),"နေ့စဉ်အသစ် ~"+n(s.daily_issuance)+" · Inflation "+Number(s.annual_inflation_pct).toFixed(2)+"%"));
+  if(sc)g.push(card("Stablecoin Supply","$"+n(sc.total_usd/1e9,1)+"B","30D "+pct(sc.change_30d_pct)+" ($"+n(sc.change_30d_usd/1e9,1)+"B)",r.stablecoin_trend,sc.change_30d_pct<-1?"dn":sc.change_30d_pct>1?"up":"mid"));
+  if(m){
+    var up=m.fed_upper,lo=m.fed_lower;
+    g.push(card("Fed ရဲ့ အတိုးနှုန်း (Target)",n(lo,2)+"-"+n(up,2)+"%","FRED · "+esc(m.fed_date)));
+    g.push(card("US 10Y Yield",n(m.us10y,2)+"%","FRED · "+esc(m.us10y_date),r.us10y_zone,m.us10y>=5?"dn":m.us10y>=4?"mid":"up"));
+    g.push(card("CPI (နှစ်ချင်း)",pct(m.cpi_yoy_pct),"လချင်း "+pct(m.cpi_mom_pct)+" · "+esc(m.cpi_date)));
+    g.push(card("Core CPI (နှစ်ချင်း)",pct(m.core_yoy_pct),"လချင်း "+pct(m.core_mom_pct)+" · "+esc(m.core_date)));
+    g.push(card("NFP (လချင်း ပြောင်းလဲမှု)",(m.nfp_change_k>0?"+":"")+n(m.nfp_change_k,0)+"K","အလုပ်လက်မဲ့ "+n(m.unemployment_pct,1)+"% · "+esc(m.nfp_date)));
+  }
+  document.getElementById("grid").innerHTML=g.join("");
+  var t=new Date(d.updated_utc),ageH=(Date.now()-t.getTime())/36e5;
+  document.getElementById("upd").textContent="နောက်ဆုံး Update: "+t.toLocaleString()+" ("+(ageH<1?"မိနစ်အနည်းငယ်အတွင်း":Math.round(ageH)+" နာရီ အကြာ")+")";
+  var w=[];
+  if(ageH>3)w.push("ဒေတာ ၃ နာရီထက်ပို ဟောင်းနေပါတယ်။ GitHub Actions မပြေးနေနိုင်ပါ။");
+  var ek=Object.keys(d.errors||{});
+  if(ek.length)w.push("ယူမရတဲ့ Source: "+ek.map(esc).join(", ")+" (ဟောင်းဒေတာ ပြထားနိုင်)");
+  document.getElementById("warn").innerHTML=w.map(function(x){return '<div class="warn">'+x+'</div>'}).join("");
+}
+function load(){
+  fetch("data.json?t="+Date.now()).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(render).catch(function(e){document.getElementById("upd").textContent="data.json ဖတ်မရပါ: "+e.message});
+}
+load();setInterval(load,300000);
+</script>
+</body>
+</html>
