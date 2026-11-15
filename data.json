@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 65355,
-    "change_24h_pct": -2.9654133991984413,
+    "usd": 65363,
+    "change_24h_pct": -3.022521717068003,
     "source": "CoinGecko"
   },
   "fng": {
@@ -15,7 +15,7 @@
     "difficulty": 134823837323272.7,
     "hashrate_ehs": 925.1765439029161,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": -3.069389440666892,
+    "next_retarget_est_pct": -3.1460714273272683,
     "blocks_to_retarget": 1820,
     "source": "mempool.space"
   },
@@ -27,6 +27,24 @@
     "change_30d_pct": -5.271216503300363,
     "source": "DefiLlama"
   },
+  "macro": {
+    "fed_upper": 4.0,
+    "fed_lower": 3.75,
+    "fed_date": "2026-11-14",
+    "us10y": 5.1,
+    "us10y_date": "2026-11-12",
+    "cpi_mom_pct": 0.3502845690429357,
+    "cpi_yoy_pct": null,
+    "cpi_date": "2026-10-01",
+    "core_mom_pct": 0.2962560785609636,
+    "core_yoy_pct": null,
+    "core_date": "2026-10-01",
+    "nfp_change_k": 165.0,
+    "nfp_date": "2026-10-01",
+    "unemployment_pct": 4.1,
+    "unemployment_date": "2026-10-01",
+    "source": "FRED (St. Louis Fed)"
+  },
   "supply": {
     "circulating": 20112315.625,
     "daily_issuance": 450.0,
@@ -36,10 +54,9 @@
   "rules": {
     "fng_zone": "EXTREME FEAR",
     "stablecoin_trend": "CONTRACTING",
+    "us10y_zone": "ABOVE 5%",
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-15T09:53:05Z",
-  "errors": {
-    "macro": "RuntimeError: FRED_API_KEY is not set"
-  }
+  "updated_utc": "2026-11-15T09:57:15Z",
+  "errors": {}
 }
