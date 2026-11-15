@@ -28,6 +28,8 @@ jobs:
           python-version: "3.12"
 
       - name: Collect data
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python collector.py
 
       - name: Save data.json to repository
