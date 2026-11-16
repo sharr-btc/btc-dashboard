@@ -159,9 +159,17 @@ def series_fng():
 
 
 def series_hashrate():
+    """Daily hash rate estimates are noisy, so return a 7-day moving average."""
     d = get("https://mempool.space/api/v1/mining/hashrate/3m")["hashrates"]
-    out = {day(r["timestamp"]): round(r["avgHashrate"] / 1e18) for r in d}
-    return sorted([k, v] for k, v in out.items())
+    daily = {}
+    for r in d:
+        daily[day(r["timestamp"])] = r["avgHashrate"] / 1e18
+    days = sorted(daily)
+    out = []
+    for i in range(6, len(days)):
+        window = [daily[k] for k in days[i - 6:i + 1]]
+        out.append([days[i], round(sum(window) / 7)])
+    return out
 
 
 def series_stablecoins():
