@@ -19,7 +19,7 @@
       "Bias (BEARISH) က ကျွန်တော့်အကဲဖြတ်ချက်ဖြစ်ပြီး Formula Score မဟုတ်ပါ။"
     ],
     "not_collected": ["14D / 30D / 90D Net Flow", "Flow Consistency", "Flow / AUM", "Flow Momentum", "Trading-day Calendar", "Chart"],
-    "source": "SoSoValue (TokenPost၊ CoinDesk မှတစ်ဆင့်)"
+    "source": "SoSoValue (TokenPost, CoinDesk မှတစ်ဆင့်)"
   },
   "sent": {
     "as_of": "2026-11-13",
@@ -30,7 +30,7 @@
     ],
     "notes": ["Extreme Fear က Buy Signal မဟုတ်ပါ။ ဈေးကွက်စိတ်ခံစားမှုကိုပဲ တိုင်းတာတာပါ။"],
     "not_collected": ["Social Sentiment (X / Reddit)", "Funding Rate", "Open Interest", "Long / Short Ratio", "Google Trends", "Perpetual Premium"],
-    "source": "Alternative.me၊ Cointelegraph၊ CryptoTicker"
+    "source": "Alternative.me, Cointelegraph, CryptoTicker"
   },
   "onchain": {
     "as_of": "2026-11-13",
@@ -44,7 +44,7 @@
     ],
     "notes": ["Network Health ကို AUTO ဒေတာနဲ့ ပြထားပြီး Holder ဒေတာက လက်စွဲ Update ဖြစ်ပါတယ်။", "MIXED ဆိုတာ ကျွန်တော့်အကဲဖြတ်ချက်ပါ။ STH ဖိအားနဲ့ Miner ဝင်ငွေကျတာက မကောင်းပေမဲ့ Wallet အလတ်စားတွေ စုဆောင်းနေပါတယ်။"],
     "not_collected": ["Exchange Reserve / Netflow", "NUPL", "SOPR", "Realized Price", "Whale Large Transactions", "Miner Reserve / Outflow", "HODL Waves"],
-    "source": "Glassnode၊ mempool.space၊ Hashrate Index (သတင်းမှတစ်ဆင့်)"
+    "source": "Glassnode, mempool.space, Hashrate Index (သတင်းမှတစ်ဆင့်)"
   },
   "sd": {
     "as_of": "2026-11-13",
@@ -60,7 +60,7 @@
     ],
     "notes": ["WEAK DEMAND က ကျွန်တော့်အကဲဖြတ်ချက်ပါ။ Stablecoin ကျတာက Bottom ရောက်ပြီဆိုတာ အာမမခံပါဘူး။"],
     "not_collected": ["Exchange Reserve", "Spot CVD / Buy-Sell Volume", "Corporate Treasury Holdings", "USDT / USDC ခွဲပြ", "Bid / Ask Liquidity"],
-    "source": "Glassnode၊ CryptoQuant (BigGo မှတစ်ဆင့်)၊ DefiLlama"
+    "source": "Glassnode, CryptoQuant (BigGo မှတစ်ဆင့်), DefiLlama"
   },
   "news": {
     "as_of": "2026-11-13",
@@ -76,27 +76,27 @@
         "vnote": "Primary Source (DOJ) ရှိပြီး Publisher များစွာက ပြန်ဖော်ပြထားပါတယ်။ Binance က ဆုံးရှုံးမှုအားလုံးကို ပြန်ဖြည့်ပေးပြီးလို့ ပြောတာက Binance ကိုယ်တိုင်ပြောတာဖြစ်ပြီး လွတ်လပ်စွာ အတည်မပြုရသေးပါဘူး။",
         "ai": "BTC ကို တိုက်ရိုက် သက်ရောက်မှု နည်းပြီး Exchange ယုံကြည်မှုနဲ့ ဆိုင်တဲ့ Sentiment ကိစ္စပါ။ ပြန်လည်ရယူရေး တိုးတက်မှု ရှိပေမဲ့ ခိုးယူထားတာတွေ ဆက်ရွှေ့နေဆဲလို့ DOJ က ပြောပါတယ်။",
         "bull": "ပြန်လည်ရယူရေး တိုးတက်မှု", "bear": "သမိုင်းအကြီးဆုံး Exchange ခိုးမှုတစ်ခု",
-        "source": "US DOJ ကြေညာချက်၊ CoinCub၊ CryptoSlate"
+        "source": "US DOJ ကြေညာချက်၊ CoinCub, CryptoSlate"
       },
       {
         "title": "Oct CPI +0.4% m/m ကြောင့် Dec Fed hike သေချာလုနီးပါး",
         "cat": "Federal Reserve / Economy", "sentiment": "NEGATIVE", "impact": "HIGH", "verification": "CONFIRMED",
         "summary": "Oct CPI က လအလိုက် 0.4% တက်ပြီး ခန့်မှန်းချက် 0.3% ထက် မြင့်ခဲ့ပါတယ်။ Dec 9 အစည်းအဝေးမှာ အတိုးနှုန်းတိုးမယ်လို့ ဈေးကွက်က အပြည့်နီးပါး ခန့်မှန်းနေပါတယ်။",
-        "what": ["ဘယ်သူ: BLS (ဒေတာ)၊ Fed", "ဘာ: Oct CPI +0.4% m/m၊ Core +0.3%၊ 10Y yield 5% ကျော်", "ဘယ်အချိန်: Nov 10, 2026", "အခြေအနေ: Oct YoY ကို မထုတ်ပြန်နိုင် (ပြီးခဲ့တဲ့နှစ် Oct ဒေတာ မရှိ)"],
+        "what": ["ဘယ်သူ: BLS (ဒေတာ), Fed", "ဘာ: Oct CPI +0.4% m/m, Core +0.3%၊ 10Y yield 5% ကျော်", "ဘယ်အချိန်: Nov 10, 2026", "အခြေအနေ: Oct YoY ကို မထုတ်ပြန်နိုင် (ပြီးခဲ့တဲ့နှစ် Oct ဒေတာ မရှိ)"],
         "vnote": "Official ဒေတာ (BLS) နဲ့ Publisher များစွာ ကိုက်ညီပါတယ်။",
         "ai": "အတိုးနှုန်းနဲ့ Yield မြင့်လာတာက BTC လို Risk asset အတွက် မကောင်းပါဘူး။ ဒါပေမဲ့ ဈေးကွက်က ဒီတိုးမယ်ဆိုတာကို ကြိုတင်ထည့်တွက်ပြီးသားမို့ Dec 9 မှာ ၅၀bp လို မမျှော်လင့်တာ ဖြစ်မှ ထပ်သက်ရောက်နိုင်ပါတယ်။",
         "bull": "၂၅bp ပဲ တိုးရင် စိတ်သက်သာမှု ရနိုင်", "bear": "10Y yield 5% ကျော်၊ ၅၀bp ဖြစ်နိုင်ခြေ",
-        "source": "BLS ဒေတာ၊ ING၊ CNBC"
+        "source": "BLS ဒေတာ၊ ING, CNBC"
       },
       {
         "title": "US spot Bitcoin ETF တွေမှာ ဆက်တိုက် ၇ session Outflow (Nov 13: -$185.45M)",
         "cat": "Bitcoin ETF", "sentiment": "NEGATIVE", "impact": "HIGH", "verification": "CORROBORATED",
-        "summary": "Nov 13 မှာ ETF တွေက $185.45M ထွက်သွားပြီး ဆက်တိုက် ၇ session ရှိပါပြီ။ IBIT က $143.53M၊ FBTC က $41.92M ထွက်ခဲ့ပါတယ်။",
-        "what": ["ဘယ်သူ: IBIT (BlackRock)၊ FBTC (Fidelity)", "ဘာ: Net outflow -$185.45M", "ဘယ်အချိန်: Nov 13 ပိတ်ချိန်", "ဒေတာ: SoSoValue ကိန်းကို ပြန်ဖော်ပြတာ၊ Nov 12 အတွက် Tracker တစ်ခုက ကွဲလွဲတဲ့ကိန်း ပြထားသည်"],
+        "summary": "Nov 13 မှာ ETF တွေက $185.45M ထွက်သွားပြီး ဆက်တိုက် ၇ session ရှိပါပြီ။ IBIT က $143.53M, FBTC က $41.92M ထွက်ခဲ့ပါတယ်။",
+        "what": ["ဘယ်သူ: IBIT (BlackRock), FBTC (Fidelity)", "ဘာ: Net outflow -$185.45M", "ဘယ်အချိန်: Nov 13 ပိတ်ချိန်", "ဒေတာ: SoSoValue ကိန်းကို ပြန်ဖော်ပြတာ၊ Nov 12 အတွက် Tracker တစ်ခုက ကွဲလွဲတဲ့ကိန်း ပြထားသည်"],
         "vnote": "SoSoValue ကိန်းကို Publisher များစွာ ပြန်ဖော်ပြတာမို့ Independent Confirmation အပြည့်အဝ မဟုတ်ပါဘူး။",
         "ai": "Institutional ဝယ်လိုအား ကျနေတာကို ပြပါတယ်။ ETF Flow က BTC ရဲ့ အဓိက Demand အချက်ဖြစ်လို့ ဆက်ကြည့်သင့်ပါတယ်။",
         "bull": "ယခင်နေ့ထက် Outflow ပမာဏ လျော့", "bear": "၇ session ဆက်တိုက်၊ 2026 YTD -$1.56B",
-        "source": "SoSoValue (TokenPost၊ CoinDesk မှတစ်ဆင့်)"
+        "source": "SoSoValue (TokenPost, CoinDesk မှတစ်ဆင့်)"
       },
       {
         "title": "Visa က USDPT stablecoin နဲ့ settlement လုပ်ခွင့်ပေးမယ်လို့ သတင်းထွက်",
@@ -106,7 +106,7 @@
         "vnote": "ကိုးကားသူအားလုံးက Decrypt တစ်ခုတည်းကို ပြန်ဖော်ပြတာမို့ Independent Confirmation မရှိပါ။ Visa ရဲ့ Official ကြေညာချက်ကို စစ်ပြီးမှ CONFIRMED လုပ်ရမယ်။",
         "ai": "Stablecoin ငွေပေးချေရေး လမ်းကြောင်း တိုးတာဖြစ်ပြီး BTC အပေါ် သွယ်ဝိုက်သက်ရောက်မှု နည်းပါတယ်။",
         "bull": "Stablecoin adoption တိုးခြင်း", "bear": "BTC ကို တိုက်ရိုက် မသက်ရောက်",
-        "source": "Decrypt၊ CoinTurk၊ BigGo"
+        "source": "Decrypt, CoinTurk, BigGo"
       }
     ]
   }
