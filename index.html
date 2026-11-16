@@ -6,8 +6,8 @@
 <title>BTC Fundamental Analysis</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#000;--card:#0b0b0b;--line:#2a2a2a;--ink:#f2f2f2;--mute:#9a9a9a;--up:#22c55e;--dn:#ef4444;--mid:#eab308;color-scheme:dark}
-@media (prefers-color-scheme:light){:root{--bg:#f5f5f3;--card:#fff;--line:#dcdcd8;--ink:#161616;--mute:#666;--up:#15803d;--dn:#b91c1c;--mid:#a16207;color-scheme:light}}
+:root{--bg:#000;--card:#0b0b0b;--line:#2a2a2a;--ink:#f2f2f2;--mute:#9a9a9a;--up:#22c55e;--dn:#ef4444;--mid:#eab308;--acc:#f7931a;color-scheme:dark}
+@media (prefers-color-scheme:light){:root{--bg:#f5f5f3;--card:#fff;--line:#dcdcd8;--ink:#161616;--mute:#666;--up:#15803d;--dn:#b91c1c;--mid:#a16207;--acc:#c2410c;color-scheme:light}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans Myanmar',system-ui,sans-serif;line-height:1.65;font-size:14px}
 .shell{max-width:640px;margin:0 auto;padding:16px}
@@ -30,6 +30,8 @@ td,th{padding:6px 4px;border-top:1px solid var(--line);text-align:left;vertical-
 th{color:var(--mute);font-weight:600;border-top:0}
 .scroll{overflow-x:auto}
 .big{font-size:22px;font-weight:700}
+.chip{font:inherit;font-size:11px;background:none;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:1px 9px;margin-left:4px;cursor:pointer}
+.chip.on{color:var(--ink);border-color:var(--acc)}
 </style>
 </head>
 <body>
@@ -100,7 +102,21 @@ function macro(){
 }
 function macroDetail(k){
   var m=D.macro;if(!m||!MD[k])return macro();
-  return back("macro","Macro")+"<div class='top'><h1>"+MD[k].t+"</h1><span class='src'>AUTO \u00b7 FRED</span></div>"+rowsTbl(mdRows(k,m))+"<h2>BTC အတွက် အဓိပ္ပာယ်</h2><div class='box'>"+MD[k].why+"</div><h2>SOURCE</h2><div class='box sm'>FRED (St. Louis Fed) \u00b7 Series: "+MD[k].series+"<br>ဒေတာ ထွက်တာနဲ့ အဆင့်ဆင့် နောက်ကျနိုင်ပါတယ် (အချို့က ၁ ရက်ခန့်)။</div>";
+  return back("macro","Macro")+"<div class='top'><h1>"+MD[k].t+"</h1><span class='src'>AUTO \u00b7 FRED</span></div>"+rowsTbl(mdRows(k,m))+(k==="us10y"?chart("US 10Y Yield","y10",function(v){return Number(v).toFixed(2)+"%"},true):"")+"<h2>BTC အတွက် အဓိပ္ပာယ်</h2><div class='box'>"+MD[k].why+"</div><h2>SOURCE</h2><div class='box sm'>FRED (St. Louis Fed) \u00b7 Series: "+MD[k].series+"<br>ဒေတာ ထွက်တာနဲ့ အဆင့်ဆင့် နောက်ကျနိုင်ပါတယ် (အချို့က ၁ ရက်ခန့်)။</div>";
+}
+var RNG=30;
+function chips(){return [7,30,90].map(function(d){return "<button class='chip"+(RNG===d?" on":"")+"' data-range='"+d+"'>"+d+"D</button>"}).join("")}
+function chart(title,key,fmt,diff){
+  var s=(D.series||{})[key],h="<div class='box'><div class='top'><b>"+title+"</b><span>"+chips()+"</span></div>";
+  if(!s||s.length<2)return h+"<div class='sm' style='margin-top:6px'>မှတ်တမ်းဒေတာ မရသေးပါ။</div></div>";
+  var a=s.slice(-(RNG+1)),v=a.map(function(p){return p[1]}),mn=Math.min.apply(null,v),mx=Math.max.apply(null,v),W=300,H=90,P=4,rg=(mx-mn)||1;
+  var pts=a.map(function(p,i){return (P+i*(W-2*P)/(a.length-1)).toFixed(1)+","+(P+(H-2*P)*(1-(p[1]-mn)/rg)).toFixed(1)}).join(" ");
+  var last=v[v.length-1],first=v[0],ch=diff?(last-first):(first?(last/first-1)*100:null);
+  var chTxt=ch==null?"":(diff?(ch>0?"+":"")+Number(ch).toFixed(0):pct(ch));
+  h+="<div class='r' style='margin-top:4px'><span class='big'>"+fmt(last)+"</span><span class='"+(ch>0?"up":ch<0?"dn":"mid")+"'>"+chTxt+" ("+(a.length-1)+" ရက်)</span></div>";
+  h+="<svg viewBox='0 0 "+W+" "+H+"' width='100%' height='110' preserveAspectRatio='none' style='display:block;margin:6px 0'><polyline points='"+pts+"' fill='none' stroke='var(--acc)' stroke-width='1.6' vector-effect='non-scaling-stroke'/></svg>";
+  h+="<div class='r sm'><span>"+a[0][0]+"</span><span>"+a[a.length-1][0]+"</span></div><div class='sm'>အနိမ့်ဆုံး "+fmt(mn)+" \u00b7 အမြင့်ဆုံး "+fmt(mx)+"</div></div>";
+  return h;
 }
 function mdata(id){return (D.manual||{})[id]||null}
 function tg(t){return "<span class='src'>"+t+"</span>"}
@@ -127,6 +143,7 @@ function modPage(id){
     if(f)auto.push(["Fear & Greed Index",f.value+"/100 ("+(z||f.label)+")","AUTO"],["အရင်နေ့",String(f.previous),"AUTO"]);
     if(p)auto.push(["BTC ဈေး (24h)","$"+n(p.usd)+" ("+pct(p.change_24h_pct)+")","AUTO"]);
     h+="<h2>အလိုအလျောက်</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
+    h+=chart("Fear & Greed Index","fng",function(v){return String(v)},true)+chart("BTC ဈေး (USD)","price",function(v){return "$"+n(v)});
     if(x)h+=staleBox(x)+"<h2>လက်စွဲ Update</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
     return h;
   }
@@ -134,6 +151,7 @@ function modPage(id){
     h=head("On-chain","AUTO + MANUAL",x&&x.assessment&&{v:x.assessment,s:"ကျွန်တော့်အကဲဖြတ်ချက် \u00b7 "+x.as_of}||(r.difficulty_trend?{v:"DIFFICULTY "+r.difficulty_trend,s:"Rule-based"}:null));
     if(nw)auto.push(["Block Height",n(nw.height),"AUTO"],["Hash Rate",n(nw.hashrate_ehs)+" EH/s","AUTO"],["Difficulty",n(nw.difficulty/1e12,2)+"T","AUTO"],["နောက်ဆုံး Difficulty ပြောင်းလဲမှု",pct(nw.last_retarget_pct)+" ("+(r.difficulty_trend||"-")+")","AUTO"],["နောက်တစ်ကြိမ် ခန့်မှန်း",pct(nw.next_retarget_est_pct),"AUTO"]);
     h+="<h2>NETWORK (အလိုအလျောက်)</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
+    h+=chart("Hash Rate (EH/s)","hashrate",function(v){return n(v)+" EH/s"});
     if(x)h+=staleBox(x)+"<h2>HOLDER / MINER (လက်စွဲ Update)</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
     return h;
   }
@@ -142,6 +160,7 @@ function modPage(id){
     if(s)auto.push(["လည်ပတ်နေသော BTC",n(s.circulating),"AUTO"],["နေ့စဉ်အသစ်ထွက်",n(s.daily_issuance)+" BTC","AUTO"],["နှစ်စဉ် Inflation",Number(s.annual_inflation_pct).toFixed(2)+"%","AUTO"]);
     if(sc)auto.push(["Stablecoin Supply","$"+n(sc.total_usd/1e9,1)+"B","AUTO"],["Stablecoin 30D",pct(sc.change_30d_pct)+" ($"+n(sc.change_30d_usd/1e9,1)+"B)","AUTO"],["Stablecoin 7D",pct(sc.change_7d_pct),"AUTO"]);
     h+="<h2>SUPPLY (အလိုအလျောက်)</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
+    h+=chart("Stablecoin Supply ($B)","stablecoins",function(v){return "$"+Number(v).toFixed(1)+"B"});
     if(x)h+=staleBox(x)+"<h2>DEMAND (လက်စွဲ Update)</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
     return h;
   }
@@ -173,7 +192,7 @@ function render(){
   else if(k.indexOf("news-")===0)h=newsDetail(k.slice(5));else h=modPage(k);
   document.getElementById("app").innerHTML=h;
 }
-document.getElementById("app").addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(b){var g=b.getAttribute("data-go");location.hash=g==="home"?"":g;if(!location.hash)render();window.scrollTo(0,0)}});
+document.getElementById("app").addEventListener("click",function(e){var rb=e.target.closest("[data-range]");if(rb){RNG=+rb.getAttribute("data-range");render();return}var b=e.target.closest("[data-go]");if(b){var g=b.getAttribute("data-go");location.hash=g==="home"?"":g;if(!location.hash)render();window.scrollTo(0,0)}});
 window.addEventListener("hashchange",render);
 function load(){
   fetch("data.json?t="+Date.now()).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(d){D=d;render()}).catch(function(e){document.getElementById("app").textContent="data.json ဖတ်မရပါ: "+e.message});
