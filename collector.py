@@ -139,6 +139,45 @@ def fetch_macro():
             "source": "FRED (St. Louis Fed)"}
 
 
+def day(ts):
+    return datetime.fromtimestamp(int(ts), timezone.utc).strftime("%Y-%m-%d")
+
+
+def series_price():
+    d = get("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
+            "?vs_currency=usd&days=90&interval=daily")["prices"]
+    out = {}
+    for t, v in d:
+        out[day(t / 1000)] = round(v)
+    return sorted([k, v] for k, v in out.items())
+
+
+def series_fng():
+    rows = get("https://api.alternative.me/fng/?limit=90")["data"]
+    out = {day(r["timestamp"]): int(r["value"]) for r in rows}
+    return sorted([k, v] for k, v in out.items())
+
+
+def series_hashrate():
+    d = get("https://mempool.space/api/v1/mining/hashrate/3m")["hashrates"]
+    out = {day(r["timestamp"]): round(r["avgHashrate"] / 1e18) for r in d}
+    return sorted([k, v] for k, v in out.items())
+
+
+def series_stablecoins():
+    rows = get("https://stablecoins.llama.fi/stablecoincharts/all")[-91:]
+    out = {}
+    for r in rows:
+        t = r.get("totalCirculatingUSD") or r.get("totalCirculating") or {}
+        out[day(r["date"])] = round(float(t.get("peggedUSD", 0)) / 1e9, 1)
+    return sorted([k, v] for k, v in out.items())
+
+
+def series_y10():
+    obs = fred("DGS10", 130)
+    return sorted([d, v] for d, v in obs)
+
+
 def fng_zone(v):
     if v <= 24:
         return "EXTREME FEAR"
@@ -228,6 +267,20 @@ def main():
             errors[key] = msg[:200]
             if key in old:
                 new[key] = dict(old[key], stale=True)
+    new["series"] = {}
+    series_jobs = {"price": series_price, "fng": series_fng, "hashrate": series_hashrate,
+                   "stablecoins": series_stablecoins, "y10": series_y10}
+    for key, fn in series_jobs.items():
+        try:
+            new["series"][key] = fn()
+        except Exception as e:  # noqa: BLE001
+            msg = type(e).__name__ + ": " + str(e)
+            secret = os.environ.get("FRED_API_KEY", "").strip()
+            if secret:
+                msg = msg.replace(secret, "***")
+            errors["series_" + key] = msg[:200]
+            if key in (old.get("series") or {}):
+                new["series"][key] = old["series"][key]
     net = new.get("network")
     if net and net.get("height"):
         s = supply_at(net["height"])
@@ -246,7 +299,7 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(new, f, ensure_ascii=False, indent=2)
     print("updated", new["updated_utc"], "errors:", errors or "none")
-    if len(errors) == len(jobs):
+    if sum(1 for k in jobs if k in errors) == len(jobs):
         sys.exit(1)
 
 
