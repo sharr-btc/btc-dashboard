@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64895,
-    "change_24h_pct": -0.18235495738400417,
+    "usd": 65283,
+    "change_24h_pct": 0.42569886287001857,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976183,
+    "height": 976187,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 971.5072780827574,
+    "hashrate_ehs": 971.6474483878222,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 8.192177058708271,
-    "blocks_to_retarget": 1577,
+    "next_retarget_est_pct": 7.47963779312153,
+    "blocks_to_retarget": 1573,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 287100675873.84,
-    "change_7d_usd": -4122577549.159973,
-    "change_7d_pct": -1.4156072706089697,
-    "change_30d_usd": -15629909724.159973,
-    "change_30d_pct": -5.162976741608507,
+    "total_usd": 287089946145.62,
+    "change_7d_usd": -4133307277.380005,
+    "change_7d_pct": -1.4192916358146723,
+    "change_30d_usd": -15640639452.380005,
+    "change_30d_pct": -5.166521057488859,
     "source": "DefiLlama"
   },
   "macro": {
@@ -32,8 +32,8 @@
     "fed_upper": 4.0,
     "fed_lower": 3.75,
     "fed_date": "2026-11-16",
-    "us10y": 5.1,
-    "us10y_date": "2026-11-12",
+    "us10y": 5.15,
+    "us10y_date": "2026-11-13",
     "cpi_mom_pct": 0.3502845690429357,
     "cpi_yoy_pct": null,
     "cpi_date": "2026-10-01",
@@ -406,7 +406,7 @@
       ],
       [
         "2026-11-16",
-        64896
+        65273
       ]
     ],
     "fng": [
@@ -1485,10 +1485,6 @@
     ],
     "y10": [
       [
-        "2026-05-15",
-        4.59
-      ],
-      [
         "2026-05-18",
         4.61
       ],
@@ -1979,13 +1975,17 @@
       [
         "2026-11-12",
         5.1
+      ],
+      [
+        "2026-11-13",
+        5.15
       ]
     ]
   },
   "supply": {
-    "circulating": 20113075.0,
+    "circulating": 20113087.5,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166329613945157,
+    "annual_inflation_pct": 0.8166324538686565,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2263,7 +2263,7 @@
         },
         {
           "name": "US 10Y Yield",
-          "value": "5.10%",
+          "value": "5.15%",
           "points": -1,
           "reason": "5% နှင့်အထက်"
         },
@@ -2278,6 +2278,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-16T20:49:53Z",
+  "updated_utc": "2026-11-16T21:46:24Z",
   "errors": {}
 }
