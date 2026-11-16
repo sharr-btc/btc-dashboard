@@ -102,13 +102,67 @@ function macroDetail(k){
   var m=D.macro;if(!m||!MD[k])return macro();
   return back("macro","Macro")+"<div class='top'><h1>"+MD[k].t+"</h1><span class='src'>AUTO \u00b7 FRED</span></div>"+rowsTbl(mdRows(k,m))+"<h2>BTC အတွက် အဓိပ္ပာယ်</h2><div class='box'>"+MD[k].why+"</div><h2>SOURCE</h2><div class='box sm'>FRED (St. Louis Fed) \u00b7 Series: "+MD[k].series+"<br>ဒေတာ ထွက်တာနဲ့ အဆင့်ဆင့် နောက်ကျနိုင်ပါတယ် (အချို့က ၁ ရက်ခန့်)။</div>";
 }
-function simple(id){
-  var m=D.manual||{},f=D.fng,nw=D.network,s=D.supply,sc=D.stablecoins,p=D.price,rows=[],name="",tag="AUTO",note="";
-  if(id==="sent"){name="Sentiment";if(f){rows=[["Fear & Greed Index",f.value+"/100 ("+((D.rules||{}).fng_zone||f.label)+")"],["အရင်နေ့",f.previous]];}note="Social Sentiment, Funding Rate, Search Interest တို့ကို နောက်အဆင့်မှာ ထည့်ပါမယ်။ Fear & Greed က Buy Signal မဟုတ်ပါ။"}
-  if(id==="onchain"){name="On-chain (Network)";if(nw)rows=[["Block Height",n(nw.height)],["Hash Rate",n(nw.hashrate_ehs)+" EH/s"],["Difficulty",n(nw.difficulty/1e12,2)+"T"],["နောက်ဆုံး Difficulty ပြောင်းလဲမှု",pct(nw.last_retarget_pct)],["နောက်တစ်ကြိမ် ခန့်မှန်း",pct(nw.next_retarget_est_pct)]];note="Exchange Reserve, MVRV, NUPL, SOPR, Whale စတာတွေက အခကြေးငွေပေးရတဲ့ Source တွေမှာပဲ ရတာမို့ မပါသေးပါ။"}
-  if(id==="sd"){name="Supply & Demand";if(s)rows.push(["လည်ပတ်နေသော BTC",n(s.circulating)],["နေ့စဉ်အသစ်",n(s.daily_issuance)+" BTC"],["နှစ်စဉ် Inflation",Number(s.annual_inflation_pct).toFixed(2)+"%"]);if(sc)rows.push(["Stablecoin Supply","$"+n(sc.total_usd/1e9,1)+"B"],["30D ပြောင်းလဲမှု",pct(sc.change_30d_pct)+" ($"+n(sc.change_30d_usd/1e9,1)+"B)"],["7D ပြောင်းလဲမှု",pct(sc.change_7d_pct)]);note="Spot Demand, Institutional, Order Book တို့ကို နောက်အဆင့်မှာ ထည့်ပါမယ်။"}
-  if(id==="etf"||id==="news"){var x=m[id];name=id==="etf"?"ETF Flow":"News";tag="MANUAL";if(x){rows=x.rows.concat([["ဒေတာ ရက်စွဲ",x.as_of],["Source",x.source]]);note="လက်နဲ့ Update လုပ်တဲ့ ဒေတာဖြစ်လို့ ကျွန်တော့်ကို \"Update လုပ်ပေး\" လို့ ပြောမှ ပြောင်းပါမယ်။"}else note="ဒေတာ မရှိသေးပါ။"}
-  return back("home","နောက်သို့")+"<div class='top'><h1>"+name+"</h1><span class='src'>"+tag+"</span></div>"+(rows.length?rowsTbl(rows):"<div class='warn'>ဒေတာ မရသေးပါ။</div>")+"<div class='sm'>"+note+"</div>";
+function mdata(id){return (D.manual||{})[id]||null}
+function tg(t){return "<span class='src'>"+t+"</span>"}
+function kv3(rows){return "<div class='box scroll'><table>"+rows.map(function(r){return "<tr><td>"+esc(r[0])+"</td><td>"+esc(r[1])+"</td><td>"+tg(r[2])+"</td></tr>"}).join("")+"</table></div>"}
+function manRows(x){return kv3(((x&&x.rows)||[]).map(function(r){return [r[0],r[1],"MANUAL"]}))}
+function notesBox(x){return x&&x.notes&&x.notes.length?"<div class='box sm'>"+x.notes.map(function(t){return "\u2022 "+esc(t)}).join("<br>")+"</div>":""}
+function ncBox(x){return x&&x.not_collected&&x.not_collected.length?"<div class='box sm'><b>မစုဆောင်းရသေးသော အချက်များ</b><br>"+x.not_collected.map(esc).join(" \u00b7 ")+"</div>":""}
+function staleBox(x){var a=x?ageDays(x.as_of):null;return a!=null&&a>3?"<div class='warn'>လက်စွဲဒေတာ "+a+" ရက် ဟောင်းနေပါပြီ ("+esc(x.as_of)+")။ \"Update လုပ်ပေး\" လို့ ပြောပါ။</div>":""}
+function src(x){return x&&x.source?"<div class='sm'>Source: "+esc(x.source)+(x.as_of?" \u00b7 လက်စွဲ ရက်စွဲ "+esc(x.as_of):"")+"</div>":""}
+function head(name,tag,label){return back("home","နောက်သို့")+"<div class='top'><h1>"+name+"</h1>"+tg(tag)+"</div>"+(label?"<div class='box'><div class='big "+bcls(label.v)+"'>"+esc(label.v)+"</div><div class='sm'>"+esc(label.s)+"</div></div>":"")}
+
+function modPage(id){
+  var x=mdata(id),r=D.rules||{},f=D.fng,nw=D.network,s=D.supply,sc=D.stablecoins,p=D.price,h="",auto=[];
+  if(id==="etf"){
+    h=head("ETF Flow","MANUAL",x&&{v:x.bias,s:"ကျွန်တော့်အကဲဖြတ်ချက် \u00b7 "+x.as_of+" \u00b7 Formula Score မဟုတ်"});
+    if(!x)return h+"<div class='warn'>ဒေတာ မရှိသေးပါ။</div>";
+    h+=staleBox(x)+"<h2>အကျဉ်းချုပ်</h2>"+manRows(x);
+    h+="<h2>ETF BREAKDOWN</h2><div class='box scroll'><table><tr><th>ETF</th><th>Net Flow</th><th>Status</th><th>AUM</th></tr>"+(x.breakdown||[]).map(function(b){return "<tr><td><b>"+esc(b[0])+"</b></td><td>"+esc(b[1])+"</td><td class='"+(b[2]==="Outflow"?"dn":b[2]==="Inflow"?"up":"mid")+"'>"+esc(b[2])+"</td><td>"+esc(b[3])+"</td></tr>"}).join("")+"</table></div>";
+    return h+notesBox(x)+ncBox(x)+src(x);
+  }
+  if(id==="sent"){
+    var z=r.fng_zone;
+    h=head("Sentiment","AUTO + MANUAL",z&&{v:z,s:"Rule-based (Fear & Greed) \u00b7 Buy Signal မဟုတ်"});
+    if(f)auto.push(["Fear & Greed Index",f.value+"/100 ("+(z||f.label)+")","AUTO"],["အရင်နေ့",String(f.previous),"AUTO"]);
+    if(p)auto.push(["BTC ဈေး (24h)","$"+n(p.usd)+" ("+pct(p.change_24h_pct)+")","AUTO"]);
+    h+="<h2>အလိုအလျောက်</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
+    if(x)h+=staleBox(x)+"<h2>လက်စွဲ Update</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
+    return h;
+  }
+  if(id==="onchain"){
+    h=head("On-chain","AUTO + MANUAL",x&&x.assessment&&{v:x.assessment,s:"ကျွန်တော့်အကဲဖြတ်ချက် \u00b7 "+x.as_of}||(r.difficulty_trend?{v:"DIFFICULTY "+r.difficulty_trend,s:"Rule-based"}:null));
+    if(nw)auto.push(["Block Height",n(nw.height),"AUTO"],["Hash Rate",n(nw.hashrate_ehs)+" EH/s","AUTO"],["Difficulty",n(nw.difficulty/1e12,2)+"T","AUTO"],["နောက်ဆုံး Difficulty ပြောင်းလဲမှု",pct(nw.last_retarget_pct)+" ("+(r.difficulty_trend||"-")+")","AUTO"],["နောက်တစ်ကြိမ် ခန့်မှန်း",pct(nw.next_retarget_est_pct),"AUTO"]);
+    h+="<h2>NETWORK (အလိုအလျောက်)</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
+    if(x)h+=staleBox(x)+"<h2>HOLDER / MINER (လက်စွဲ Update)</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
+    return h;
+  }
+  if(id==="sd"){
+    h=head("Supply & Demand","AUTO + MANUAL",x&&x.assessment&&{v:x.assessment,s:"ကျွန်တော့်အကဲဖြတ်ချက် \u00b7 "+x.as_of}||(r.stablecoin_trend?{v:"STABLECOIN "+r.stablecoin_trend,s:"Rule-based"}:null));
+    if(s)auto.push(["လည်ပတ်နေသော BTC",n(s.circulating),"AUTO"],["နေ့စဉ်အသစ်ထွက်",n(s.daily_issuance)+" BTC","AUTO"],["နှစ်စဉ် Inflation",Number(s.annual_inflation_pct).toFixed(2)+"%","AUTO"]);
+    if(sc)auto.push(["Stablecoin Supply","$"+n(sc.total_usd/1e9,1)+"B","AUTO"],["Stablecoin 30D",pct(sc.change_30d_pct)+" ($"+n(sc.change_30d_usd/1e9,1)+"B)","AUTO"],["Stablecoin 7D",pct(sc.change_7d_pct),"AUTO"]);
+    h+="<h2>SUPPLY (အလိုအလျောက်)</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
+    if(x)h+=staleBox(x)+"<h2>DEMAND (လက်စွဲ Update)</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
+    return h;
+  }
+  if(id==="news"){
+    h=head("News","MANUAL",x&&{v:x.bias,s:"ကျွန်တော့်အကဲဖြတ်ချက် \u00b7 "+x.as_of+" \u00b7 Formal Score မတွက်"});
+    if(!x||!x.items)return h+"<div class='warn'>ဒေတာ မရှိသေးပါ။</div>";
+    h+=staleBox(x)+"<h2>EVENTS</h2>";
+    x.items.forEach(function(it,i){h+="<button class='item' data-go='news-"+i+"'><div class='r'><span class='sm'>"+esc(it.cat)+"</span>"+badge(it.sentiment)+"</div><b>"+esc(it.title)+"</b><div class='sm'>Impact: "+esc(it.impact)+" \u00b7 "+esc(it.verification)+"</div></button>"});
+    return h+notesBox(x);
+  }
+  return back("home","နောက်သို့")+"<div class='warn'>ဒီစာမျက်နှာ မရှိပါ။</div>";
+}
+function newsDetail(i){
+  var x=mdata("news"),it=x&&x.items&&x.items[+i];
+  if(!it)return modPage("news");
+  var h=back("news","News")+"<div class='top'><span class='src'>MANUAL \u00b7 "+esc(x.as_of)+"</span></div><h1 style='margin-top:8px'>"+esc(it.title)+"</h1><div>"+badge(it.sentiment)+" "+badge(it.impact+" IMPACT")+" <span class='src'>"+esc(it.cat)+"</span></div>";
+  h+="<h2>1. အကျဉ်းချုပ်</h2><div class='box'>"+esc(it.summary)+"</div>";
+  h+="<h2>2. ဘာဖြစ်ခဲ့လဲ</h2><div class='box'>"+it.what.map(esc).join("<br>")+"</div>";
+  h+="<h2>3. BTC အပေါ် သက်ရောက်မှု</h2><div class='box'>"+esc(it.ai)+"<br><br><span class='sm'>Bullish အချက်</span><br>"+esc(it.bull)+"<br><span class='sm'>Bearish အချက်</span><br>"+esc(it.bear)+"</div>";
+  h+="<h2>4. အတည်ပြုချက်</h2><div class='box'><div class='top'><span class='sm'>Status</span>"+badge(it.verification)+"</div><div class='sm' style='margin-top:6px'>"+esc(it.vnote)+"</div></div>";
+  return h+"<div class='sm'>Source: "+esc(it.source)+"</div><div class='sm'>Sentiment ကနေ Impact ကို ခွဲပြထားပါတယ်။ Price Reaction ကို မစုဆောင်းရသေးပါ။</div>";
 }
 function render(){
   if(!D)return;
@@ -116,7 +170,7 @@ function render(){
   if(k==="home")h=home();
   else if(k==="macro")h=macro();
   else if(k.indexOf("macro-")===0)h=macroDetail(k.slice(6));
-  else h=simple(k);
+  else if(k.indexOf("news-")===0)h=newsDetail(k.slice(5));else h=modPage(k);
   document.getElementById("app").innerHTML=h;
 }
 document.getElementById("app").addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(b){var g=b.getAttribute("data-go");location.hash=g==="home"?"":g;if(!location.hash)render();window.scrollTo(0,0)}});
