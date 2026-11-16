@@ -149,9 +149,9 @@ function modPage(id){
   }
   if(id==="onchain"){
     h=head("On-chain","AUTO + MANUAL",x&&x.assessment&&{v:x.assessment,s:"ကျွန်တော့်အကဲဖြတ်ချက် \u00b7 "+x.as_of}||(r.difficulty_trend?{v:"DIFFICULTY "+r.difficulty_trend,s:"Rule-based"}:null));
-    if(nw)auto.push(["Block Height",n(nw.height),"AUTO"],["Hash Rate",n(nw.hashrate_ehs)+" EH/s","AUTO"],["Difficulty",n(nw.difficulty/1e12,2)+"T","AUTO"],["နောက်ဆုံး Difficulty ပြောင်းလဲမှု",pct(nw.last_retarget_pct)+" ("+(r.difficulty_trend||"-")+")","AUTO"],["နောက်တစ်ကြိမ် ခန့်မှန်း",pct(nw.next_retarget_est_pct),"AUTO"]);
+    if(nw)auto.push(["Block Height",n(nw.height),"AUTO"],["Hash Rate (လက်ရှိ ခန့်မှန်း)",n(nw.hashrate_ehs)+" EH/s","AUTO"],["Difficulty",n(nw.difficulty/1e12,2)+"T","AUTO"],["နောက်ဆုံး Difficulty ပြောင်းလဲမှု",pct(nw.last_retarget_pct)+" ("+(r.difficulty_trend||"-")+")","AUTO"],["နောက်တစ်ကြိမ် ခန့်မှန်း",pct(nw.next_retarget_est_pct),"AUTO"]);
     h+="<h2>NETWORK (အလိုအလျောက်)</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
-    h+=chart("Hash Rate (EH/s)","hashrate",function(v){return n(v)+" EH/s"});
+    h+=chart("Hash Rate (EH/s) – 7 ရက် ပျမ်းမျှ","hashrate",function(v){return n(v)+" EH/s"});
     if(x)h+=staleBox(x)+"<h2>HOLDER / MINER (လက်စွဲ Update)</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
     return h;
   }
