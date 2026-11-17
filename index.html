@@ -60,6 +60,7 @@ function home(){
    {id:"news",name:"News",mode:"M",d:man.news&&man.news.as_of,label:man.news&&man.news.bias,sub:man.news&&man.news.headline}
   ];
   var h="<h1>BTC FUNDAMENTAL ANALYSIS</h1><div class='sm'>နောက်ဆုံး Auto Update: "+new Date(D.updated_utc).toLocaleString()+"</div>";
+  var nx=nextEvt();if(nx)h+="<div class='sm' style='margin-top:4px'>နောက်ထပ် အရေးကြီး Event: <b>"+esc(nx.name)+"</b> \u00b7 "+esc(nx.next)+" ("+dayTxt(daysTo(nx.next))+")</div>";
   var ek=Object.keys(D.errors||{});
   if(ek.length)h+="<div class='warn'>ယူမရတဲ့ Source: "+ek.map(esc).join(", ")+"</div>";
   h+="<h2>MODULES</h2>";
@@ -85,6 +86,22 @@ function mdRows(k,m){
   if(k==="core")return [["လချင်း (m/m)",pct(m.core_mom_pct)],["နှစ်ချင်း (y/y)",m.core_yoy_pct==null?"မရနိုင် (ပြီးခဲ့တဲ့နှစ် အခြေခံဒေတာ မရှိ)":pct(m.core_yoy_pct)],["လ",ym(m.core_date)]];
   return [["NFP လချင်း ပြောင်းလဲမှု",(m.nfp_change_k>0?"+":"")+n(m.nfp_change_k)+"K"],["Unemployment",n(m.unemployment_pct,1)+"%"],["လ",ym(m.nfp_date)]];
 }
+function daysTo(d){var t=new Date(d+"T00:00:00Z"),x=new Date(),a=Date.UTC(x.getUTCFullYear(),x.getUTCMonth(),x.getUTCDate());return Math.round((t.getTime()-a)/864e5)}
+function dayTxt(k){return k<=0?"ယနေ့":k===1?"မနက်ဖြန်":k+" ရက်အကြာ"}
+function nextEvt(){var c=D.calendar;if(!c||!c.events)return null;var e=c.events.filter(function(x){return x.next});return e.length?e[0]:null}
+function calBox(){
+  var c=D.calendar,m=D.macro||{};
+  if(!c||!c.events)return "<div class='box sm'>Calendar ဒေတာ မရသေးပါ။</div>";
+  var last={"CPI":m.cpi_mom_pct!=null?pct(m.cpi_mom_pct)+" m/m ("+ym(m.cpi_date)+")":"-","Jobs Report (NFP)":m.nfp_change_k!=null?(m.nfp_change_k>0?"+":"")+n(m.nfp_change_k)+"K ("+ym(m.nfp_date)+")":"-"};
+  var h="<div class='box scroll'><table><tr><th>Event</th><th>ရက်စွဲ</th><th>ကျန်ချိန်</th><th>ယခင်</th></tr>";
+  c.events.forEach(function(e){
+    var k=e.next?daysTo(e.next):null;
+    h+="<tr><td><b>"+esc(e.name)+"</b><div class='sm'>"+esc(e.source)+"</div></td><td>"+(e.next?esc(e.next):"မရသေး")+"</td><td class='"+(k!=null&&k<=7?"mid":"")+"'>"+(k==null?"-":dayTxt(k))+"</td><td class='sm'>"+(e.prev?esc(e.prev):"-")+(last[e.name]?"<br>"+esc(last[e.name]):"")+"</td></tr>";
+  });
+  h+="</table></div>";
+  if(c.warnings&&c.warnings.length)h+="<div class='warn'>ရက်စွဲ ယူမရတာ: "+c.warnings.map(esc).join(" ; ")+"</div>";
+  return h+"<div class='sm'>FOMC ရက်စွဲက ဆုံးဖြတ်ချက်ထုတ်တဲ့ ဒုတိယနေ့ဖြစ်ပြီး 2027 ရက်စွဲတွေက မူကြမ်းပါ။ CPI/NFP/PCE ရက်စွဲကို FRED ကယူပါတယ်။ အစိုးရရပ်နားမှု စတာကြောင့် ရွှေ့ဆိုင်းနိုင်ပါတယ်။ Forecast (မျှော်မှန်း) ကိန်းကို အခမဲ့ Source မရှိလို့ မပါပါဘူး။</div>";
+}
 function macro(){
   var m=D.macro,mm=(D.rules||{}).macro;
   if(!m)return back("home","နောက်သို့")+"<h1>MACRO</h1><div class='warn'>FRED ဒေတာ မရသေးပါ။ FRED_API_KEY ကို GitHub Secrets ထဲ စစ်ပါ။</div>";
@@ -98,7 +115,7 @@ function macro(){
     var v=mdRows(k,m)[0];
     h+="<button class='item' data-go='macro-"+k+"'><div class='r'><b>"+MD[k].t+"</b><span class='chev'>\u203a</span></div><div class='sm'>"+esc(v[0])+": "+esc(v[1])+"</div></button>";
   });
-  return h+"<div class='sm'>မရသေးသော အပိုင်း: Economic Calendar၊ DXY (Licensed Data လို)၊ Liquidity။</div>";
+  h+="<h2>ECONOMIC CALENDAR</h2>"+calBox();return h+"<div class='sm'>မရသေးသော အပိုင်း: DXY (Licensed Data လို)၊ Liquidity၊ Forecast ကိန်းများ။</div>";
 }
 function macroDetail(k){
   var m=D.macro;if(!m||!MD[k])return macro();
@@ -122,6 +139,7 @@ function mdata(id){return (D.manual||{})[id]||null}
 function tg(t){return "<span class='src'>"+t+"</span>"}
 function kv3(rows){return "<div class='box scroll'><table>"+rows.map(function(r){return "<tr><td>"+esc(r[0])+"</td><td>"+esc(r[1])+"</td><td>"+tg(r[2])+"</td></tr>"}).join("")+"</table></div>"}
 function manRows(x){return kv3(((x&&x.rows)||[]).map(function(r){return [r[0],r[1],"MANUAL"]}))}
+function ncFilter(x){var y=JSON.parse(JSON.stringify(x||{}));if(y.not_collected)y.not_collected=y.not_collected.filter(function(t){return !/Funding Rate|Open Interest/.test(t)});return y}
 function notesBox(x){return x&&x.notes&&x.notes.length?"<div class='box sm'>"+x.notes.map(function(t){return "\u2022 "+esc(t)}).join("<br>")+"</div>":""}
 function ncBox(x){return x&&x.not_collected&&x.not_collected.length?"<div class='box sm'><b>မစုဆောင်းရသေးသော အချက်များ</b><br>"+x.not_collected.map(esc).join(" \u00b7 ")+"</div>":""}
 function staleBox(x){var a=x?ageDays(x.as_of):null;return a!=null&&a>3?"<div class='warn'>လက်စွဲဒေတာ "+a+" ရက် ဟောင်းနေပါပြီ ("+esc(x.as_of)+")။ \"Update လုပ်ပေး\" လို့ ပြောပါ။</div>":""}
@@ -142,9 +160,12 @@ function modPage(id){
     h=head("Sentiment","AUTO + MANUAL",z&&{v:z,s:"Rule-based (Fear & Greed) \u00b7 Buy Signal မဟုတ်"});
     if(f)auto.push(["Fear & Greed Index",f.value+"/100 ("+(z||f.label)+")","AUTO"],["အရင်နေ့",String(f.previous),"AUTO"]);
     if(p)auto.push(["BTC ဈေး (24h)","$"+n(p.usd)+" ("+pct(p.change_24h_pct)+")","AUTO"]);
+    if(D.derivs){var dv=D.derivs;auto.push(["Funding Rate (8h)",Number(dv.funding_8h_pct).toFixed(4)+"% ("+(r.funding_zone||"-")+")","AUTO"],["Open Interest",n(dv.oi_btc)+" BTC (~$"+n(dv.oi_usd/1e9,2)+"B)","AUTO"],["Derivatives Source",dv.exchange+(dv.stale?" (ဟောင်း)":"")+" \u00b7 Exchange တစ်ခုတည်း","AUTO"])}
     h+="<h2>အလိုအလျောက်</h2>"+(auto.length?kv3(auto):"<div class='warn'>ဒေတာ မရသေးပါ။</div>");
     h+=chart("Fear & Greed Index","fng",function(v){return String(v)},true)+chart("BTC ဈေး (USD)","price",function(v){return "$"+n(v)});
-    if(x)h+=staleBox(x)+"<h2>လက်စွဲ Update</h2>"+manRows(x)+notesBox(x)+ncBox(x)+src(x);
+    if((D.series||{}).funding)h+=chart("Funding Rate (8h %)","funding",function(v){return Number(v).toFixed(4)+"%"},true);
+    if((D.series||{}).oi_usd)h+=chart("Open Interest ($B)","oi_usd",function(v){return "$"+Number(v).toFixed(2)+"B"});
+    if(x)h+=staleBox(x)+"<h2>လက်စွဲ Update</h2>"+manRows(x)+notesBox(x)+ncBox(D.derivs?ncFilter(x):x)+src(x);
     return h;
   }
   if(id==="onchain"){
