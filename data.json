@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64318,
-    "change_24h_pct": -0.16763521819602736,
+    "usd": 64313,
+    "change_24h_pct": 0.0451655722622131,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976251,
+    "height": 976255,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 975.7348546075334,
+    "hashrate_ehs": 972.4956744224414,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 11.540488318988217,
-    "blocks_to_retarget": 1509,
+    "next_retarget_est_pct": 10.893719632375776,
+    "blocks_to_retarget": 1505,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 286449578774.14,
-    "change_7d_usd": -3926644826.8599854,
-    "change_7d_pct": -1.3522611383828407,
-    "change_30d_usd": -16066430212.859985,
-    "change_30d_pct": -5.310935532522646,
+    "total_usd": 286439584454.52,
+    "change_7d_usd": -3936639146.4799805,
+    "change_7d_pct": -1.3557029903003475,
+    "change_30d_usd": -16076424532.47998,
+    "change_30d_pct": -5.314239264994016,
     "source": "DefiLlama"
   },
   "macro": {
@@ -77,10 +77,10 @@
     "generated": "2026-11-17"
   },
   "derivs": {
-    "funding_8h_pct": 0.00027113793807,
-    "oi_btc": 31228.125800000143,
+    "funding_8h_pct": 0.00051353887538,
+    "oi_btc": 31478.59630000014,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 2008530595.2044091
+    "oi_usd": 2024482963.841909
   },
   "series": {
     "price": [
@@ -2020,20 +2020,20 @@
     "funding": [
       [
         "2026-11-17",
-        0.0003
+        0.0005
       ]
     ],
     "oi_usd": [
       [
         "2026-11-17",
-        2.01
+        2.02
       ]
     ]
   },
   "supply": {
-    "circulating": 20113287.5,
+    "circulating": 20113300.0,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166243335407004,
+    "annual_inflation_pct": 0.8166238260255652,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2327,6 +2327,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-17T08:57:24Z",
+  "updated_utc": "2026-11-17T09:59:57Z",
   "errors": {}
 }
