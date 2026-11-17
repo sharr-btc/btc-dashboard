@@ -1,30 +1,30 @@
 {
   "price": {
-    "usd": 64877,
-    "change_24h_pct": -0.6633739208356186,
+    "usd": 64571,
+    "change_24h_pct": -0.5216708467214166,
     "source": "CoinGecko"
   },
   "fng": {
-    "value": 10,
+    "value": 12,
     "label": "Extreme Fear",
     "previous": 10,
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976196,
+    "height": 976200,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 969.3787444265683,
+    "hashrate_ehs": 969.9391767391163,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 7.082940521924708,
-    "blocks_to_retarget": 1564,
+    "next_retarget_est_pct": 7.33662477484982,
+    "blocks_to_retarget": 1560,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 287099100376.1,
-    "change_7d_usd": -4124153046.9000244,
-    "change_7d_pct": -1.4161482637204514,
-    "change_30d_usd": -15631485221.900024,
-    "change_30d_pct": -5.163497170602142,
+    "total_usd": 287100084698.21,
+    "change_7d_usd": -4123168724.789978,
+    "change_7d_pct": -1.4158102680080635,
+    "change_30d_usd": -15630500899.789978,
+    "change_30d_pct": -5.163172022712607,
     "source": "DefiLlama"
   },
   "macro": {
@@ -48,10 +48,6 @@
   },
   "series": {
     "price": [
-      [
-        "2026-08-19",
-        64686
-      ],
       [
         "2026-08-20",
         69291
@@ -406,14 +402,14 @@
       ],
       [
         "2026-11-16",
-        64846
+        65305
+      ],
+      [
+        "2026-11-17",
+        64594
       ]
     ],
     "fng": [
-      [
-        "2026-08-19",
-        46
-      ],
       [
         "2026-08-20",
         62
@@ -769,13 +765,13 @@
       [
         "2026-11-16",
         10
+      ],
+      [
+        "2026-11-17",
+        12
       ]
     ],
     "hashrate": [
-      [
-        "2026-08-23",
-        910
-      ],
       [
         "2026-08-24",
         885
@@ -1983,9 +1979,9 @@
     ]
   },
   "supply": {
-    "circulating": 20113115.625,
+    "circulating": 20113128.125,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166313119377794,
+    "annual_inflation_pct": 0.8166308044139703,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2278,6 +2274,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-16T23:41:25Z",
+  "updated_utc": "2026-11-17T00:59:51Z",
   "errors": {}
 }
