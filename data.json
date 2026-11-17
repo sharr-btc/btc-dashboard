@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64983,
-    "change_24h_pct": 0.32997854522589903,
+    "usd": 64784,
+    "change_24h_pct": 0.6866478836985388,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976228,
+    "height": 976237,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 978.9284415459209,
+    "hashrate_ehs": 983.6509742315897,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 9.746441043461473,
-    "blocks_to_retarget": 1532,
+    "next_retarget_est_pct": 11.852782838089194,
+    "blocks_to_retarget": 1523,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 286395240434.18,
-    "change_7d_usd": -3980983166.8200073,
-    "change_7d_pct": -1.3709742200829067,
-    "change_30d_usd": -16120768552.820007,
-    "change_30d_pct": -5.328897669515653,
+    "total_usd": 286413839842.12,
+    "change_7d_usd": -3962383758.880005,
+    "change_7d_pct": -1.3645689408526211,
+    "change_30d_usd": -16102169144.880005,
+    "change_30d_pct": -5.322749430286171,
     "source": "DefiLlama"
   },
   "macro": {
@@ -77,10 +77,10 @@
     "generated": "2026-11-17"
   },
   "derivs": {
-    "funding_8h_pct": 0.00445427269921,
-    "oi_btc": 30661.942300000137,
+    "funding_8h_pct": 0.00384498712869,
+    "oi_btc": 30660.17460000012,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1992504996.4809089
+    "oi_usd": 1986288751.2864077
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-17",
-        64980
+        64770
       ]
     ],
     "fng": [
@@ -2020,7 +2020,7 @@
     "funding": [
       [
         "2026-11-17",
-        0.0045
+        0.0038
       ]
     ],
     "oi_usd": [
@@ -2031,9 +2031,9 @@
     ]
   },
   "supply": {
-    "circulating": 20113215.625,
+    "circulating": 20113243.75,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166272517649698,
+    "annual_inflation_pct": 0.8166261098486415,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2327,6 +2327,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-17T04:56:44Z",
+  "updated_utc": "2026-11-17T05:57:58Z",
   "errors": {}
 }
