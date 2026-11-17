@@ -186,6 +186,79 @@ def series_y10():
     return sorted([d, v] for d, v in obs)
 
 
+# FOMC decision days (2nd day of each meeting). Source: federalreserve.gov calendar.
+# 2027 dates are tentative (the Fed confirms them meeting by meeting).
+FOMC_DECISIONS = ["2026-01-28", "2026-03-18", "2026-04-29", "2026-06-17", "2026-07-29",
+                  "2026-09-16", "2026-10-28", "2026-12-09",
+                  "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09", "2027-07-28",
+                  "2027-09-15", "2027-10-27", "2027-12-08"]
+# FRED release ids: 10 = Consumer Price Index, 50 = Employment Situation,
+# 54 = Personal Income and Outlays (PCE)
+CAL_RELEASES = [("CPI", 10), ("Jobs Report (NFP)", 50), ("PCE (Personal Income and Outlays)", 54)]
+
+
+def scrub(msg):
+    secret = os.environ.get("FRED_API_KEY", "").strip()
+    return msg.replace(secret, "***") if secret else msg
+
+
+def release_dates(rid):
+    key = os.environ.get("FRED_API_KEY", "").strip()
+    if not key:
+        raise RuntimeError("FRED_API_KEY is not set")
+    url = ("https://api.stlouisfed.org/fred/release/dates?release_id=%d&api_key=%s"
+           "&file_type=json&include_release_dates_with_no_data=true"
+           "&sort_order=desc&limit=24" % (rid, key))
+    return sorted(r["date"] for r in get(url)["release_dates"])
+
+
+def fetch_calendar():
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    events, warnings = [], []
+
+    def add(name, dates, source):
+        past = [d for d in dates if d < today]
+        fut = [d for d in dates if d >= today]
+        events.append({"name": name, "next": fut[0] if fut else None,
+                       "prev": past[-1] if past else None, "source": source})
+
+    add("FOMC Rate Decision", FOMC_DECISIONS, "Fed calendar")
+    for name, rid in CAL_RELEASES:
+        try:
+            add(name, release_dates(rid), "FRED")
+        except Exception as e:  # noqa: BLE001
+            warnings.append((name + ": " + type(e).__name__ + " " + scrub(str(e)))[:120])
+    events.sort(key=lambda e: e["next"] or "9999-99-99")
+    return {"events": events, "warnings": warnings, "generated": today}
+
+
+def derivs_okx():
+    fr = get("https://www.okx.com/api/v5/public/funding-rate?instId=BTC-USDT-SWAP")["data"][0]
+    oi = get("https://www.okx.com/api/v5/public/open-interest"
+             "?instType=SWAP&instId=BTC-USDT-SWAP")["data"][0]
+    return {"funding_8h_pct": float(fr["fundingRate"]) * 100, "oi_btc": float(oi["oiCcy"]),
+            "exchange": "OKX BTC-USDT-SWAP"}
+
+
+def derivs_deribit():
+    r = get("https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL")["result"]
+    mark = float(r["mark_price"])
+    return {"funding_8h_pct": float(r["funding_8h"]) * 100,
+            "oi_btc": float(r["open_interest"]) / mark, "oi_usd": float(r["open_interest"]),
+            "exchange": "Deribit BTC-PERPETUAL"}
+
+
+def fetch_derivs():
+    """Single-exchange snapshot. Binance blocks US IPs, so try OKX then Deribit."""
+    errs = []
+    for fn in (derivs_okx, derivs_deribit):
+        try:
+            return fn()
+        except Exception as e:  # noqa: BLE001
+            errs.append(fn.__name__ + ": " + type(e).__name__)
+    raise RuntimeError("; ".join(errs))
+
+
 def fng_zone(v):
     if v <= 24:
         return "EXTREME FEAR"
@@ -238,6 +311,9 @@ def rules(d):
         c = d["stablecoins"]["change_30d_pct"]
         r["stablecoin_trend"] = ("CONTRACTING" if c < -1 else
                                  "EXPANDING" if c > 1 else "FLAT")
+    if "derivs" in d:
+        f = d["derivs"]["funding_8h_pct"]
+        r["funding_zone"] = "LONGS CROWDED" if f >= 0.03 else "SHORTS CROWDED" if f <= -0.01 else "NEUTRAL"
     if "macro" in d:
         y = d["macro"]["us10y"]
         r["us10y_zone"] = "ABOVE 5%" if y >= 5 else "4-5%" if y >= 4 else "BELOW 4%"
@@ -262,7 +338,8 @@ def main():
             old = {}
     jobs = {"price": fetch_price, "fng": fetch_fng, "network": fetch_network,
             "stablecoins": fetch_stablecoins,
-            "macro": fetch_macro}
+            "macro": fetch_macro, "calendar": fetch_calendar,
+            "derivs": fetch_derivs}
     new, errors = {}, {}
     for key, fn in jobs.items():
         try:
@@ -289,6 +366,19 @@ def main():
             errors["series_" + key] = msg[:200]
             if key in (old.get("series") or {}):
                 new["series"][key] = old["series"][key]
+    dv = new.get("derivs")
+    if dv and "oi_usd" not in dv and new.get("price"):
+        dv["oi_usd"] = dv["oi_btc"] * new["price"]["usd"]
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    old_series = old.get("series") or {}
+    for key, val in (("funding", dv and round(dv["funding_8h_pct"], 4)),
+                     ("oi_usd", dv and dv.get("oi_usd") and round(dv["oi_usd"] / 1e9, 2))):
+        prev = list(old_series.get(key, []))
+        if dv and not dv.get("stale") and val is not None:
+            prev = [p for p in prev if p[0] != today]
+            prev.append([today, val])
+        if prev:
+            new["series"][key] = prev[-90:]
     net = new.get("network")
     if net and net.get("height"):
         s = supply_at(net["height"])
