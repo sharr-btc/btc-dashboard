@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64768,
-    "change_24h_pct": -0.22928862086194357,
+    "usd": 64955,
+    "change_24h_pct": -0.012996021790379618,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976206,
+    "height": 976217,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 967.7098253165844,
+    "hashrate_ehs": 967.2056019429608,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 7.126588312591742,
-    "blocks_to_retarget": 1554,
+    "next_retarget_est_pct": 7.955055697804991,
+    "blocks_to_retarget": 1543,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 286416454878.69,
-    "change_7d_usd": -3959768722.3099976,
-    "change_7d_pct": -1.3636683724322534,
-    "change_30d_usd": -16099554108.309998,
-    "change_30d_pct": -5.321885001134549,
+    "total_usd": 286395228137.45,
+    "change_7d_usd": -3980995463.549988,
+    "change_7d_pct": -1.3709784548407764,
+    "change_30d_usd": -16120780849.549988,
+    "change_30d_pct": -5.328901734335238,
     "source": "DefiLlama"
   },
   "macro": {
@@ -406,7 +406,7 @@
       ],
       [
         "2026-11-17",
-        64786
+        64970
       ]
     ],
     "fng": [
@@ -1983,9 +1983,9 @@
     ]
   },
   "supply": {
-    "circulating": 20113146.875,
+    "circulating": 20113181.25,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166300431294394,
+    "annual_inflation_pct": 0.8166286474448192,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2278,6 +2278,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-17T02:11:01Z",
+  "updated_utc": "2026-11-17T03:52:46Z",
   "errors": {}
 }
