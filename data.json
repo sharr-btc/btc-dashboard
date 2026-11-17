@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 64955,
-    "change_24h_pct": -0.012996021790379618,
+    "usd": 64981,
+    "change_24h_pct": 0.2572325867868333,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976217,
+    "height": 976228,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 967.2056019429608,
+    "hashrate_ehs": 978.9284415459209,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 7.955055697804991,
-    "blocks_to_retarget": 1543,
+    "next_retarget_est_pct": 9.759586178728208,
+    "blocks_to_retarget": 1532,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 286395228137.45,
-    "change_7d_usd": -3980995463.549988,
-    "change_7d_pct": -1.3709784548407764,
-    "change_30d_usd": -16120780849.549988,
-    "change_30d_pct": -5.328901734335238,
+    "total_usd": 286395240434.18,
+    "change_7d_usd": -3980983166.8200073,
+    "change_7d_pct": -1.3709742200829067,
+    "change_30d_usd": -16120768552.820007,
+    "change_30d_pct": -5.328897669515653,
     "source": "DefiLlama"
   },
   "macro": {
@@ -45,6 +45,42 @@
     "unemployment_pct": 4.1,
     "unemployment_date": "2026-10-01",
     "source": "FRED (St. Louis Fed)"
+  },
+  "calendar": {
+    "events": [
+      {
+        "name": "PCE (Personal Income and Outlays)",
+        "next": "2026-11-25",
+        "prev": "2026-10-29",
+        "source": "FRED"
+      },
+      {
+        "name": "Jobs Report (NFP)",
+        "next": "2026-12-04",
+        "prev": "2026-11-06",
+        "source": "FRED"
+      },
+      {
+        "name": "FOMC Rate Decision",
+        "next": "2026-12-09",
+        "prev": "2026-10-28",
+        "source": "Fed calendar"
+      },
+      {
+        "name": "CPI",
+        "next": "2026-12-10",
+        "prev": "2026-11-10",
+        "source": "FRED"
+      }
+    ],
+    "warnings": [],
+    "generated": "2026-11-17"
+  },
+  "derivs": {
+    "funding_8h_pct": 0.00446144857957,
+    "oi_btc": 30657.413100000136,
+    "exchange": "OKX BTC-USDT-SWAP",
+    "oi_usd": 1992149360.6511087
   },
   "series": {
     "price": [
@@ -406,7 +442,7 @@
       ],
       [
         "2026-11-17",
-        64970
+        64989
       ]
     ],
     "fng": [
@@ -1980,12 +2016,24 @@
         "2026-11-13",
         5.15
       ]
+    ],
+    "funding": [
+      [
+        "2026-11-17",
+        0.0045
+      ]
+    ],
+    "oi_usd": [
+      [
+        "2026-11-17",
+        1.99
+      ]
     ]
   },
   "supply": {
-    "circulating": 20113181.25,
+    "circulating": 20113215.625,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8166286474448192,
+    "annual_inflation_pct": 0.8166272517649698,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2250,6 +2298,7 @@
   "rules": {
     "fng_zone": "EXTREME FEAR",
     "stablecoin_trend": "CONTRACTING",
+    "funding_zone": "NEUTRAL",
     "us10y_zone": "ABOVE 5%",
     "macro": {
       "score": -3,
@@ -2278,6 +2327,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-17T03:52:46Z",
+  "updated_utc": "2026-11-17T04:56:10Z",
   "errors": {}
 }
