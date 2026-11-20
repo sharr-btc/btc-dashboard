@@ -1,31 +1,30 @@
 {
   "price": {
-    "usd": 61733,
-    "change_24h_pct": -1.886211987249202,
+    "usd": 61935,
+    "change_24h_pct": -1.9901259553854929,
     "source": "CoinGecko"
   },
   "fng": {
-    "value": 10,
+    "value": 12,
     "label": "Extreme Fear",
-    "previous": 11,
+    "previous": 10,
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976646,
+    "height": 976660,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 1023.066161413829,
+    "hashrate_ehs": 1024.358173752438,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 9.255898366606186,
-    "blocks_to_retarget": 1114,
-    "source": "mempool.space",
-    "stale": true
+    "next_retarget_est_pct": 9.215423552181035,
+    "blocks_to_retarget": 1100,
+    "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 285227940817.06,
-    "change_7d_usd": -3838496521.9400024,
-    "change_7d_pct": -1.3278942229597002,
-    "change_30d_usd": -16372368794.940002,
-    "change_30d_pct": -5.428498669647448,
+    "total_usd": 285228939202.55,
+    "change_7d_usd": -3837498136.450012,
+    "change_7d_pct": -1.3275488402514268,
+    "change_30d_usd": -16371370409.450012,
+    "change_30d_pct": -5.4281676403155235,
     "source": "DefiLlama"
   },
   "macro": {
@@ -75,20 +74,16 @@
       }
     ],
     "warnings": [],
-    "generated": "2026-11-19"
+    "generated": "2026-11-20"
   },
   "derivs": {
-    "funding_8h_pct": -0.00141504452202,
-    "oi_btc": 33266.59410000013,
+    "funding_8h_pct": -0.00214036344488,
+    "oi_btc": 33755.12430000015,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 2053646653.5753083
+    "oi_usd": 2090623623.5205092
   },
   "series": {
     "price": [
-      [
-        "2026-08-22",
-        78318
-      ],
       [
         "2026-08-23",
         77081
@@ -443,14 +438,14 @@
       ],
       [
         "2026-11-19",
-        61893
+        62997
+      ],
+      [
+        "2026-11-20",
+        61998
       ]
     ],
     "fng": [
-      [
-        "2026-08-22",
-        71
-      ],
       [
         "2026-08-23",
         66
@@ -806,13 +801,13 @@
       [
         "2026-11-19",
         10
+      ],
+      [
+        "2026-11-20",
+        12
       ]
     ],
     "hashrate": [
-      [
-        "2026-08-26",
-        860
-      ],
       [
         "2026-08-27",
         886
@@ -1152,6 +1147,10 @@
       [
         "2026-11-19",
         993
+      ],
+      [
+        "2026-11-20",
+        1009
       ]
     ],
     "stablecoins": [
@@ -2033,7 +2032,7 @@
       ],
       [
         "2026-11-20",
-        -0.0014
+        -0.0021
       ]
     ],
     "oi_usd": [
@@ -2051,14 +2050,14 @@
       ],
       [
         "2026-11-20",
-        2.05
+        2.09
       ]
     ]
   },
   "supply": {
-    "circulating": 20114521.875,
+    "circulating": 20114565.625,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8165742194655073,
+    "annual_inflation_pct": 0.8165724433833007,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2352,8 +2351,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-20T00:01:46Z",
-  "errors": {
-    "network": "URLError: <urlopen error [Errno 101] Network is unreachable>"
-  }
+  "updated_utc": "2026-11-20T00:59:10Z",
+  "errors": {}
 }
