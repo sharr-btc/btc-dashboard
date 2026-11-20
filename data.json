@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 62183,
-    "change_24h_pct": -0.3722730308531277,
+    "usd": 61733,
+    "change_24h_pct": -1.886211987249202,
     "source": "CoinGecko"
   },
   "fng": {
@@ -17,14 +17,15 @@
     "last_retarget_pct": -9.126656385443539,
     "next_retarget_est_pct": 9.255898366606186,
     "blocks_to_retarget": 1114,
-    "source": "mempool.space"
+    "source": "mempool.space",
+    "stale": true
   },
   "stablecoins": {
-    "total_usd": 285226080053.45,
-    "change_7d_usd": -3840357285.549988,
-    "change_7d_pct": -1.3285379378188567,
-    "change_30d_usd": -16374229558.549988,
-    "change_30d_pct": -5.429115633075761,
+    "total_usd": 285227940817.06,
+    "change_7d_usd": -3838496521.9400024,
+    "change_7d_pct": -1.3278942229597002,
+    "change_30d_usd": -16372368794.940002,
+    "change_30d_pct": -5.428498669647448,
     "source": "DefiLlama"
   },
   "macro": {
@@ -77,10 +78,10 @@
     "generated": "2026-11-19"
   },
   "derivs": {
-    "funding_8h_pct": 0.0009535027802100001,
-    "oi_btc": 33165.51040000013,
+    "funding_8h_pct": -0.00141504452202,
+    "oi_btc": 33266.59410000013,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 2062330933.2032082
+    "oi_usd": 2053646653.5753083
   },
   "series": {
     "price": [
@@ -442,7 +443,7 @@
       ],
       [
         "2026-11-19",
-        62201
+        61893
       ]
     ],
     "fng": [
@@ -2029,6 +2030,10 @@
       [
         "2026-11-19",
         0.001
+      ],
+      [
+        "2026-11-20",
+        -0.0014
       ]
     ],
     "oi_usd": [
@@ -2043,6 +2048,10 @@
       [
         "2026-11-19",
         2.06
+      ],
+      [
+        "2026-11-20",
+        2.05
       ]
     ]
   },
@@ -2343,6 +2352,8 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-19T22:47:54Z",
-  "errors": {}
+  "updated_utc": "2026-11-20T00:01:46Z",
+  "errors": {
+    "network": "URLError: <urlopen error [Errno 101] Network is unreachable>"
+  }
 }
