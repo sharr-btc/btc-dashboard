@@ -1,30 +1,30 @@
 {
   "price": {
-    "usd": 60178,
-    "change_24h_pct": 2.146768620862102,
+    "usd": 60081,
+    "change_24h_pct": 1.9287886919565032,
     "source": "CoinGecko"
   },
   "fng": {
-    "value": 12,
+    "value": 11,
     "label": "Extreme Fear",
     "previous": 12,
     "source": "Alternative.me"
   },
   "network": {
-    "height": 976964,
+    "height": 976969,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 1041.931027263292,
+    "hashrate_ehs": 1036.103333247489,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 9.07434207000053,
-    "blocks_to_retarget": 796,
+    "next_retarget_est_pct": 8.719910257300834,
+    "blocks_to_retarget": 791,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 282506223838.81,
-    "change_7d_usd": -4545526180.190002,
-    "change_7d_pct": -1.583521500875411,
-    "change_30d_usd": -19047120418.190002,
-    "change_30d_pct": -6.316335328702912,
+    "total_usd": 282511685366.14,
+    "change_7d_usd": -4540064652.859985,
+    "change_7d_pct": -1.5816188727501148,
+    "change_30d_usd": -19041658890.859985,
+    "change_30d_pct": -6.31452419729481,
     "source": "DefiLlama"
   },
   "macro": {
@@ -74,20 +74,16 @@
       }
     ],
     "warnings": [],
-    "generated": "2026-11-21"
+    "generated": "2026-11-22"
   },
   "derivs": {
-    "funding_8h_pct": -0.00411134776073,
-    "oi_btc": 31422.467700000114,
+    "funding_8h_pct": -0.0022110067149,
+    "oi_btc": 31453.94410000013,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1890941261.2506068
+    "oi_usd": 1889784415.472108
   },
   "series": {
     "price": [
-      [
-        "2026-08-24",
-        77712
-      ],
       [
         "2026-08-25",
         78974
@@ -442,14 +438,14 @@
       ],
       [
         "2026-11-21",
-        60175
+        58818
+      ],
+      [
+        "2026-11-22",
+        60070
       ]
     ],
     "fng": [
-      [
-        "2026-08-24",
-        73
-      ],
       [
         "2026-08-25",
         74
@@ -805,13 +801,13 @@
       [
         "2026-11-21",
         12
+      ],
+      [
+        "2026-11-22",
+        11
       ]
     ],
     "hashrate": [
-      [
-        "2026-08-28",
-        898
-      ],
       [
         "2026-08-29",
         893
@@ -1151,6 +1147,10 @@
       [
         "2026-11-21",
         1033
+      ],
+      [
+        "2026-11-22",
+        1058
       ]
     ],
     "stablecoins": [
@@ -2037,6 +2037,10 @@
       [
         "2026-11-21",
         -0.0041
+      ],
+      [
+        "2026-11-22",
+        -0.0022
       ]
     ],
     "oi_usd": [
@@ -2059,13 +2063,17 @@
       [
         "2026-11-21",
         1.89
+      ],
+      [
+        "2026-11-22",
+        1.89
       ]
     ]
   },
   "supply": {
-    "circulating": 20115515.625,
+    "circulating": 20115531.25,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8165338789320744,
+    "annual_inflation_pct": 0.8165332446787852,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2359,6 +2367,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-21T23:37:07Z",
+  "updated_utc": "2026-11-22T00:59:37Z",
   "errors": {}
 }
