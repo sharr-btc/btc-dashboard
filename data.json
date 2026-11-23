@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 61167,
-    "change_24h_pct": 0.7631244835721999,
+    "usd": 61110,
+    "change_24h_pct": 0.2839705039293683,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 977271,
+    "height": 977279,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 1055.710297173835,
+    "hashrate_ehs": 1055.660655234768,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 9.861797980354758,
-    "blocks_to_retarget": 489,
+    "next_retarget_est_pct": 9.960781131989926,
+    "blocks_to_retarget": 481,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 282750441742.32,
-    "change_7d_usd": -4347940379.679993,
-    "change_7d_pct": -1.51444266162126,
-    "change_30d_usd": -17918041434.679993,
-    "change_30d_pct": -5.959401279891332,
+    "total_usd": 282752041338.02,
+    "change_7d_usd": -4346340783.97998,
+    "change_7d_pct": -1.5138855021945195,
+    "change_30d_usd": -17916441838.97998,
+    "change_30d_pct": -5.958869266797339,
     "source": "DefiLlama"
   },
   "macro": {
@@ -32,8 +32,8 @@
     "fed_upper": 4.0,
     "fed_lower": 3.75,
     "fed_date": "2026-11-23",
-    "us10y": 5.04,
-    "us10y_date": "2026-11-19",
+    "us10y": 4.92,
+    "us10y_date": "2026-11-20",
     "cpi_mom_pct": 0.3502845690429357,
     "cpi_yoy_pct": null,
     "cpi_date": "2026-10-01",
@@ -77,10 +77,10 @@
     "generated": "2026-11-23"
   },
   "derivs": {
-    "funding_8h_pct": 0.00582333497767,
-    "oi_btc": 29376.33390000008,
+    "funding_8h_pct": 0.006354832559889999,
+    "oi_btc": 29199.69820000008,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1796862215.661305
+    "oi_usd": 1784393557.0020049
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-23",
-        61150
+        61104
       ]
     ],
     "fng": [
@@ -1521,10 +1521,6 @@
     ],
     "y10": [
       [
-        "2026-05-22",
-        4.56
-      ],
-      [
         "2026-05-26",
         4.5
       ],
@@ -2015,6 +2011,10 @@
       [
         "2026-11-19",
         5.04
+      ],
+      [
+        "2026-11-20",
+        4.92
       ]
     ],
     "funding": [
@@ -2044,7 +2044,7 @@
       ],
       [
         "2026-11-23",
-        0.0058
+        0.0064
       ]
     ],
     "oi_usd": [
@@ -2074,14 +2074,14 @@
       ],
       [
         "2026-11-23",
-        1.8
+        1.78
       ]
     ]
   },
   "supply": {
-    "circulating": 20116475.0,
+    "circulating": 20116500.0,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8164949376071106,
+    "annual_inflation_pct": 0.8164939228991126,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2347,9 +2347,9 @@
     "fng_zone": "EXTREME FEAR",
     "stablecoin_trend": "CONTRACTING",
     "funding_zone": "NEUTRAL",
-    "us10y_zone": "ABOVE 5%",
+    "us10y_zone": "4-5%",
     "macro": {
-      "score": -3,
+      "score": -2,
       "label": "BEARISH",
       "parts": [
         {
@@ -2360,9 +2360,9 @@
         },
         {
           "name": "US 10Y Yield",
-          "value": "5.04%",
-          "points": -1,
-          "reason": "5% နှင့်အထက်"
+          "value": "4.92%",
+          "points": 0,
+          "reason": "4-5% အတွင်း"
         },
         {
           "name": "CPI လချင်း",
@@ -2375,6 +2375,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-23T20:51:18Z",
+  "updated_utc": "2026-11-23T21:51:33Z",
   "errors": {}
 }
