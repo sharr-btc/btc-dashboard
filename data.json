@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 60117,
-    "change_24h_pct": 0.2813193670862512,
+    "usd": 60277,
+    "change_24h_pct": 0.9256133335303165,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 977581,
+    "height": 977593,
     "difficulty": 134823837323272.7,
-    "hashrate_ehs": 1040.695675435574,
+    "hashrate_ehs": 1042.2640516650808,
     "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 8.686225193758723,
-    "blocks_to_retarget": 179,
+    "next_retarget_est_pct": 9.038399198420421,
+    "blocks_to_retarget": 167,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 282486156984.86,
-    "change_7d_usd": -3770627392.1400146,
-    "change_7d_pct": -1.3172185247403956,
-    "change_30d_usd": -17661651552.140015,
-    "change_30d_pct": -5.884318009259367,
+    "total_usd": 282455525983.11,
+    "change_7d_usd": -3801258393.8900146,
+    "change_7d_pct": -1.3279190577658972,
+    "change_30d_usd": -17692282553.890015,
+    "change_30d_pct": -5.894523315071628,
     "source": "DefiLlama"
   },
   "macro": {
@@ -78,9 +78,9 @@
   },
   "derivs": {
     "funding_8h_pct": 0.01,
-    "oi_btc": 31480.068100000106,
+    "oi_btc": 31667.454600000114,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1892487253.9677064
+    "oi_usd": 1908819160.924207
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-25",
-        60116
+        60266
       ]
     ],
     "fng": [
@@ -2094,14 +2094,14 @@
       ],
       [
         "2026-11-25",
-        1.89
+        1.91
       ]
     ]
   },
   "supply": {
-    "circulating": 20117443.75,
+    "circulating": 20117481.25,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8164556195167689,
+    "annual_inflation_pct": 0.8164540976023029,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2395,6 +2395,6 @@
     },
     "difficulty_trend": "EASING"
   },
-  "updated_utc": "2026-11-25T22:54:00Z",
+  "updated_utc": "2026-11-25T23:49:25Z",
   "errors": {}
 }
