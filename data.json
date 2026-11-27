@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 61420,
-    "change_24h_pct": 0.8649929345807118,
+    "usd": 61707,
+    "change_24h_pct": 1.8541120616333668,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 977757,
-    "difficulty": 134823837323272.7,
-    "hashrate_ehs": 1030.089543793499,
-    "last_retarget_pct": -9.126656385443539,
-    "next_retarget_est_pct": 7.571870365391842,
-    "blocks_to_retarget": 3,
+    "height": 977767,
+    "difficulty": 145088938867954.3,
+    "hashrate_ehs": 1035.782553453039,
+    "last_retarget_pct": 7.61371412391162,
+    "next_retarget_est_pct": -4.732819076137673,
+    "blocks_to_retarget": 2009,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 281882921310.53,
-    "change_7d_usd": -1548837172.4699707,
-    "change_7d_pct": -0.5464585834557664,
-    "change_30d_usd": -17582213492.46997,
-    "change_30d_pct": -5.871205509127546,
+    "total_usd": 281865006635.42,
+    "change_7d_usd": -1566751847.580017,
+    "change_7d_pct": -0.5527792142862458,
+    "change_30d_usd": -17600128167.580017,
+    "change_30d_pct": -5.877187733108923,
     "source": "DefiLlama"
   },
   "macro": {
@@ -77,10 +77,10 @@
     "generated": "2026-11-27"
   },
   "derivs": {
-    "funding_8h_pct": 0.0096876567422,
-    "oi_btc": 32304.603700000134,
+    "funding_8h_pct": 0.00918301063726,
+    "oi_btc": 32614.259900000157,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1984148759.2540083
+    "oi_usd": 2012528135.6493096
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-27",
-        61448
+        61718
       ]
     ],
     "fng": [
@@ -2064,7 +2064,7 @@
       ],
       [
         "2026-11-27",
-        0.0097
+        0.0092
       ]
     ],
     "oi_usd": [
@@ -2110,14 +2110,14 @@
       ],
       [
         "2026-11-27",
-        1.98
+        2.01
       ]
     ]
   },
   "supply": {
-    "circulating": 20117993.75,
+    "circulating": 20118025.0,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8164332986732338,
+    "annual_inflation_pct": 0.8164320304801291,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2409,8 +2409,8 @@
       ],
       "note": "Rule-based ဖြစ်ပြီး Trading Signal မဟုတ်ပါ"
     },
-    "difficulty_trend": "EASING"
+    "difficulty_trend": "RISING"
   },
-  "updated_utc": "2026-11-27T05:05:29Z",
+  "updated_utc": "2026-11-27T06:05:40Z",
   "errors": {}
 }
