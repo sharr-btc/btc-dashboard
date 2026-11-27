@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 61606,
-    "change_24h_pct": 1.2742101972241104,
+    "usd": 61596,
+    "change_24h_pct": 1.887283390155337,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,12 +11,12 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 977789,
+    "height": 977793,
     "difficulty": 145088938867954.3,
-    "hashrate_ehs": 1033.030782634896,
+    "hashrate_ehs": 1030.093599590278,
     "last_retarget_pct": 7.61371412391162,
-    "next_retarget_est_pct": -5.488351662725899,
-    "blocks_to_retarget": 1987,
+    "next_retarget_est_pct": -5.919337961146908,
+    "blocks_to_retarget": 1983,
     "source": "mempool.space"
   },
   "stablecoins": {
@@ -77,10 +77,10 @@
     "generated": "2026-11-27"
   },
   "derivs": {
-    "funding_8h_pct": -0.00014860210555,
-    "oi_btc": 32072.949600000116,
+    "funding_8h_pct": -0.00126080876609,
+    "oi_btc": 32150.616700000115,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1975886133.0576072
+    "oi_usd": 1980349386.2532072
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-27",
-        61612
+        61610
       ]
     ],
     "fng": [
@@ -2064,7 +2064,7 @@
       ],
       [
         "2026-11-27",
-        -0.0001
+        -0.0013
       ]
     ],
     "oi_usd": [
@@ -2115,9 +2115,9 @@
     ]
   },
   "supply": {
-    "circulating": 20118093.75,
+    "circulating": 20118106.25,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8164292404691673,
+    "annual_inflation_pct": 0.8164287331964957,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2411,6 +2411,6 @@
     },
     "difficulty_trend": "RISING"
   },
-  "updated_utc": "2026-11-27T10:05:31Z",
+  "updated_utc": "2026-11-27T10:57:31Z",
   "errors": {}
 }
