@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 59189,
-    "change_24h_pct": -3.6698969142448536,
+    "usd": 59054,
+    "change_24h_pct": -3.828927681745197,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,27 +11,27 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 977943,
+    "height": 977947,
     "difficulty": 145088938867954.3,
-    "hashrate_ehs": 1012.8263937947099,
+    "hashrate_ehs": 1012.1893303479959,
     "last_retarget_pct": 7.61371412391162,
-    "next_retarget_est_pct": -5.338936915783499,
-    "blocks_to_retarget": 1833,
+    "next_retarget_est_pct": -5.820112028126667,
+    "blocks_to_retarget": 1829,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 281375212391.85,
-    "change_7d_usd": -1060396922.1500244,
-    "change_7d_pct": -0.37544731867401315,
-    "change_30d_usd": -16169575673.150024,
-    "change_30d_pct": -5.434333358115387,
+    "total_usd": 281377000157.61,
+    "change_7d_usd": -1058609156.3900146,
+    "change_7d_pct": -0.37481433696028665,
+    "change_30d_usd": -16167787907.390015,
+    "change_30d_pct": -5.433732518903369,
     "source": "DefiLlama"
   },
   "macro": {
     "fed_change_6m_pp": 0.25,
     "fed_upper": 4.0,
     "fed_lower": 3.75,
-    "fed_date": "2026-11-27",
+    "fed_date": "2026-11-28",
     "us10y": 4.85,
     "us10y_date": "2026-11-25",
     "cpi_mom_pct": 0.3502845690429357,
@@ -77,10 +77,10 @@
     "generated": "2026-11-28"
   },
   "derivs": {
-    "funding_8h_pct": 0.0063471004244,
-    "oi_btc": 32414.021100000125,
+    "funding_8h_pct": 0.00618434649537,
+    "oi_btc": 32430.24140000013,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1918553494.8879075
+    "oi_usd": 1915135475.6356077
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-28",
-        59200
+        59068
       ]
     ],
     "fng": [
@@ -2068,7 +2068,7 @@
       ],
       [
         "2026-11-28",
-        0.0063
+        0.0062
       ]
     ],
     "oi_usd": [
@@ -2123,9 +2123,9 @@
     ]
   },
   "supply": {
-    "circulating": 20118575.0,
+    "circulating": 20118587.5,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8164097109263455,
+    "annual_inflation_pct": 0.8164092036779421,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2419,6 +2419,6 @@
     },
     "difficulty_trend": "RISING"
   },
-  "updated_utc": "2026-11-28T12:56:40Z",
+  "updated_utc": "2026-11-28T14:01:56Z",
   "errors": {}
 }
