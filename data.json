@@ -1,7 +1,7 @@
 {
   "price": {
-    "usd": 59434,
-    "change_24h_pct": -1.3393533783941172,
+    "usd": 59437,
+    "change_24h_pct": -0.20589398788262767,
     "source": "CoinGecko"
   },
   "fng": {
@@ -11,20 +11,20 @@
     "source": "Alternative.me"
   },
   "network": {
-    "height": 977953,
+    "height": 977964,
     "difficulty": 145088938867954.3,
-    "hashrate_ehs": 1003.724439308803,
+    "hashrate_ehs": 1008.170263654191,
     "last_retarget_pct": 7.61371412391162,
-    "next_retarget_est_pct": -7.694498093059132,
-    "blocks_to_retarget": 1823,
+    "next_retarget_est_pct": -6.339638822020932,
+    "blocks_to_retarget": 1812,
     "source": "mempool.space"
   },
   "stablecoins": {
-    "total_usd": 281384097770.24,
-    "change_7d_usd": -1051511543.7600098,
-    "change_7d_pct": -0.37230133491807105,
-    "change_30d_usd": -16160690294.76001,
-    "change_30d_pct": -5.43134712587526,
+    "total_usd": 281383925967.92,
+    "change_7d_usd": -1051683346.0800171,
+    "change_7d_pct": -0.37236216376342257,
+    "change_30d_usd": -16160862097.080017,
+    "change_30d_pct": -5.431404865861608,
     "source": "DefiLlama"
   },
   "macro": {
@@ -77,10 +77,10 @@
     "generated": "2026-11-28"
   },
   "derivs": {
-    "funding_8h_pct": 0.00454460462847,
-    "oi_btc": 32284.73350000013,
+    "funding_8h_pct": 0.00452667109095,
+    "oi_btc": 32363.743200000128,
     "exchange": "OKX BTC-USDT-SWAP",
-    "oi_usd": 1918810850.8390076
+    "oi_usd": 1923603804.5784075
   },
   "series": {
     "price": [
@@ -442,7 +442,7 @@
       ],
       [
         "2026-11-28",
-        59465
+        59439
       ]
     ],
     "fng": [
@@ -2123,9 +2123,9 @@
     ]
   },
   "supply": {
-    "circulating": 20118606.25,
+    "circulating": 20118640.625,
     "daily_issuance": 450.0,
-    "annual_inflation_pct": 0.8164084428065189,
+    "annual_inflation_pct": 0.81640704787926,
     "note": "calculated from block height"
   },
   "manual": {
@@ -2419,6 +2419,6 @@
     },
     "difficulty_trend": "RISING"
   },
-  "updated_utc": "2026-11-28T16:47:35Z",
+  "updated_utc": "2026-11-28T17:44:06Z",
   "errors": {}
 }
